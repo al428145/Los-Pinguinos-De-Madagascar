@@ -12,6 +12,10 @@ namespace Controller
         [SerializeField] private string m_JumpButton = "Jump";
         [SerializeField] private KeyCode m_RunKey = KeyCode.LeftShift;
 
+        [Header("Debug")]
+        [SerializeField] private NoiseCircle noiseCircle;
+
+
         [Header("Camera")]
         [SerializeField] private PlayerCamera m_Camera;
         [SerializeField] private string m_MouseX = "Mouse X";
@@ -82,30 +86,39 @@ namespace Controller
             {
                 AudioClip targetClip = m_IsRun ? runClip : walkClip;
 
-                // si cambia el clip, actualízalo
                 if (m_AudioSource.clip != targetClip)
                 {
                     m_AudioSource.clip = targetClip;
 
                     if (m_IsRun)
-                        m_AudioSource.time = runStartAt; // arrancar desde la mitad
+                        m_AudioSource.time = runStartAt;
 
                     m_AudioSource.Play();
                 }
 
-                // ajustar volumen y rango según camine o corra
                 if (m_IsRun)
                 {
-                    m_AudioSource.volume = 1f;       // fuerte
-                    m_AudioSource.maxDistance = 30f; // más rango audible
+                    m_AudioSource.volume = 1f;
+                    m_AudioSource.maxDistance = 30f;
+
+                    if (noiseCircle != null)
+                    {
+                        noiseCircle.visible = true;
+                        noiseCircle.radius = 7f; // radio cuando corre
+                    }
                 }
                 else
                 {
-                    m_AudioSource.volume = 0.5f;     // más suave
-                    m_AudioSource.maxDistance = 15f; // menos rango
+                    m_AudioSource.volume = 0.5f;
+                    m_AudioSource.maxDistance = 15f;
+
+                    if (noiseCircle != null)
+                    {
+                        noiseCircle.visible = true;
+                        noiseCircle.radius = 3f; // radio cuando camina
+                    }
                 }
 
-                // reiniciar si por alguna razón se detuvo
                 if (!m_AudioSource.isPlaying)
                 {
                     if (m_IsRun)
@@ -118,8 +131,12 @@ namespace Controller
             {
                 if (m_AudioSource.isPlaying)
                     m_AudioSource.Stop();
-            }
-        }
 
+                if (noiseCircle != null)
+                    noiseCircle.visible = false;
+            }
+
+
+        }
     }
 }
