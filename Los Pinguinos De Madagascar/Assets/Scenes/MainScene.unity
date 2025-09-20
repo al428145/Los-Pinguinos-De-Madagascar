@@ -29662,9 +29662,19 @@ PrefabInstance:
       objectReference: {fileID: 1137804091}
     - target: {fileID: 2197702747431416006, guid: 66f01a8db88f9644baed659d1f91cdca,
         type: 3}
+      propertyPath: radiorun
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2197702747431416006, guid: 66f01a8db88f9644baed659d1f91cdca,
+        type: 3}
       propertyPath: walkClip
       value: 
       objectReference: {fileID: 8300000, guid: 112fb1e95cc627d479a2c292471abcc2, type: 3}
+    - target: {fileID: 2197702747431416006, guid: 66f01a8db88f9644baed659d1f91cdca,
+        type: 3}
+      propertyPath: radiowalk
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2197702747431416006, guid: 66f01a8db88f9644baed659d1f91cdca,
         type: 3}
       propertyPath: runStartAt
@@ -33629,7 +33639,12 @@ PrefabInstance:
     - target: {fileID: 8881504610387854134, guid: 6b0b0b098177a3b439c80991ec9deacc,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8881504610387854134, guid: 6b0b0b098177a3b439c80991ec9deacc,
+        type: 3}
+      propertyPath: noiseCircle
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8881504610387854135, guid: 6b0b0b098177a3b439c80991ec9deacc,
         type: 3}
@@ -33659,7 +33674,7 @@ PrefabInstance:
     - target: {fileID: 8881504610387854135, guid: 6b0b0b098177a3b439c80991ec9deacc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 70.53
+      value: 81.12
       objectReference: {fileID: 0}
     - target: {fileID: 8881504610387854135, guid: 6b0b0b098177a3b439c80991ec9deacc,
         type: 3}
@@ -33701,7 +33716,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8881504610387854134, guid: 6b0b0b098177a3b439c80991ec9deacc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -53787,8 +53803,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0.032043457
-        value: 0.18769264
+        time: 0.027980804
+        value: 0.124414444
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -67602,7 +67618,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1631142533}
   playerNoiseCircle: {fileID: 1424552065}
-  detectionRange: 3
+  detectionRange: 4
   detectionDelay: 0.5
   showDetectionCircle: 1
   circleSegments: 50

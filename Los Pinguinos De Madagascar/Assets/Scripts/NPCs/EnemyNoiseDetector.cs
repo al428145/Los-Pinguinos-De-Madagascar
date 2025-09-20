@@ -37,9 +37,11 @@ public class EnemyNoiseDetector : MonoBehaviour
         Vector3 npcCenter = transform.position;
         Vector3 playerCenter = playerNoiseCircle.transform.position;
 
-        // Lógica de detección (usa el radio dinámico del jugador)
         float combinedRadius = detectionRange + playerNoiseCircle.radius;
         float distance = Vector3.Distance(npcCenter, playerCenter);
+
+        // DEBUG: imprimir posiciones y distancia
+        Debug.Log($"NPC Pos: {npcCenter}, Player Pos: {playerCenter}, Distance: {distance}, Combined Radius: {combinedRadius}");
 
         if (distance <= combinedRadius)
         {
@@ -54,9 +56,10 @@ public class EnemyNoiseDetector : MonoBehaviour
             detectionTimer = 0f;
         }
 
-        // Visualización del círculo del NPC (siempre fijo)
-        DrawDetectionCircle(detectionRange/2); 
+        // Visualización del círculo del NPC
+        DrawDetectionCircle(detectionRange);
     }
+
 
 
     private void DrawDetectionCircle(float radius)
@@ -72,8 +75,8 @@ public class EnemyNoiseDetector : MonoBehaviour
         float angle = 0f;
         for (int i = 0; i < circleSegments; i++)
         {
-            float x = Mathf.Cos(Mathf.Deg2Rad * angle) * radius;
-            float z = Mathf.Sin(Mathf.Deg2Rad * angle) * radius;
+            float x = Mathf.Cos(Mathf.Deg2Rad * angle) *( radius);
+            float z = Mathf.Sin(Mathf.Deg2Rad * angle) * (radius );
             lineRenderer.SetPosition(i, new Vector3(x, 0, z));
             angle += 360f / circleSegments;
         }

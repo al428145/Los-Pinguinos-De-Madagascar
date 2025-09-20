@@ -14,6 +14,8 @@ namespace Controller
 
         [Header("Debug")]
         [SerializeField] private NoiseCircle noiseCircle;
+        [SerializeField] private int radiowalk;
+        [SerializeField] private int radiorun;
 
 
         [Header("Camera")]
@@ -104,7 +106,7 @@ namespace Controller
                     if (noiseCircle != null)
                     {
                         noiseCircle.visible = true;
-                        noiseCircle.radius = 7f; // radio cuando corre
+                        noiseCircle.radius = radiorun; // radio cuando corre
                     }
                 }
                 else
@@ -115,7 +117,7 @@ namespace Controller
                     if (noiseCircle != null)
                     {
                         noiseCircle.visible = true;
-                        noiseCircle.radius = 3f; // radio cuando camina
+                        noiseCircle.radius = radiowalk; // radio cuando camina
                     }
                 }
 
