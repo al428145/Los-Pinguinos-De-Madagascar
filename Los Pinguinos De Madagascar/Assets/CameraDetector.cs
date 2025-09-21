@@ -41,6 +41,8 @@ public class SecurityCamera : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToPlayer, distToPlayer, obstructionMask))
                 {
                     canSeePlayer = true;
+                    Debug.Log("Detectado");
+
                     return;
                 }
             }
