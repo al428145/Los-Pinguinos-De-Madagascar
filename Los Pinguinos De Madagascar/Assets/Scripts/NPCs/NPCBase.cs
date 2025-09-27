@@ -26,27 +26,27 @@ public abstract class NPCBase : MonoBehaviour
 
     protected virtual void MoverHacia(Vector3 objetivo)
     {
-        // Dirección en plano XZ
-        Vector3 direccion = (objetivo - transform.position);
-        direccion.y = 0f; // no mirar arriba/abajo
+        Vector3 direccion = objetivo - transform.position;
+        direccion.y = 0f;
+        float distancia = direccion.magnitude;
         direccion.Normalize();
 
-        if (direccion.sqrMagnitude > 0.01f)
+        float currentSpeed = 0f;
+
+        if (distancia > distanciaMinima)
         {
-            // Movimiento
             transform.position += direccion * velocidad * Time.deltaTime;
 
-            // Rotación suave hacia el objetivo
             Quaternion rotObjetivo = Quaternion.LookRotation(direccion);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotObjetivo, velocidadRotacion * Time.deltaTime);
+
+            currentSpeed = velocidad; // usamos la velocidad real
         }
 
-        // Animación de caminar
         if (animator != null)
         {
-            float speedValue = direccion.magnitude * velocidad; 
-            //animator.SetFloat("Speed", speedValue); 
-            // 👉 Debes tener en el Animator un parámetro float "Speed"
+            animator.SetFloat("Speed", currentSpeed);
         }
     }
+
 }
