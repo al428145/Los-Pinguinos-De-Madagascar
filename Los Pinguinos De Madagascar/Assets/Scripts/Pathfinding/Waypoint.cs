@@ -6,16 +6,27 @@ public class Waypoint : MonoBehaviour
 {
     [HideInInspector] public List<Waypoint> neighbors = new List<Waypoint>();
 
-    // Radio máximo para buscar vecinos (puedes ajustarlo en el inspector)
-    public float connectionRadius = 10f;
+    [HideInInspector] public Vector3 position;
+
+    // Radio maximo para buscar vecinos (puedes ajustarlo en el inspector)
+    public float connectionRadius = 20f;
+
+    void Awake()
+    {
+        position = transform.position;
+    }
 
     void OnDrawGizmos()
     {
         // Dibuja el nodo en la escena (esfera amarilla)
         Gizmos.color = Color.yellow;
         Gizmos.DrawSphere(transform.position, 0.3f);
+        
+        //Draw the radius
+        Gizmos.color = new Color(0f, 1f, 0f, 0.25f);
+        Gizmos.DrawWireSphere(transform.position, connectionRadius);
 
-        // Dibuja conexiones con vecinos (líneas azules)
+        // Dibuja conexiones con vecinos (lineas azules)
         Gizmos.color = Color.cyan;
         foreach (var neighbor in neighbors)
         {

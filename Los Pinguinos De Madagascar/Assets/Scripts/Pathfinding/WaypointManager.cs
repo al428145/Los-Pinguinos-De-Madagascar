@@ -6,6 +6,12 @@ public class WaypointManager : MonoBehaviour
 {
     private List<Waypoint> waypoints = new List<Waypoint>();
 
+    [Header("Layers block mask")]
+    public LayerMask obstacleMask;
+
+    [Header("Heigh of the raycast")]
+    public float rayOffsetY = 0.25f;
+
     void Start()
     {
         // 1. Encuentra todos los waypoints en la escena
@@ -22,10 +28,14 @@ public class WaypointManager : MonoBehaviour
 
                 if (dist <= wp.connectionRadius)
                 {
+                    Vector3 origin = wp.transform.position + Vector3.up * rayOffsetY;
+                    Vector3 target = other.transform.position + Vector3.up * rayOffsetY;
+                    Vector3 dir = (target-origin).normalized;
+
+                    Debug.DrawLine(origin, target, Color.red, 3f);
+
                     // Raycast para comprobar visibilidad
-                    if (!Physics.Raycast(wp.transform.position, 
-                                         (other.transform.position - wp.transform.position).normalized, 
-                                         dist))
+                    if (!Physics.Linecast(origin, target, obstacleMask))
                     {
                         if (!wp.neighbors.Contains(other))
                             wp.neighbors.Add(other);
@@ -33,6 +43,8 @@ public class WaypointManager : MonoBehaviour
                 }
             }
         }
+
+        Debug.Log($"WaypointManager: {waypoints.Count} waypoints conectados.");
     }
 
     public List<Waypoint> GetWaypoints()
