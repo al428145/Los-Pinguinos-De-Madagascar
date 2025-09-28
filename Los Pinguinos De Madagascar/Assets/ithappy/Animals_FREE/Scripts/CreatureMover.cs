@@ -14,6 +14,7 @@ namespace Controller
         [SerializeField, Range(0f, 360f)] private float m_RotateSpeed = 90f;
         [SerializeField] private Space m_Space = Space.Self;
         [SerializeField] private float m_JumpHeight = 5f;
+        public Transform cameraTransform;
 
         [Header("Animator")]
         [SerializeField] private string m_VerticalID = "Vert";
@@ -61,9 +62,18 @@ namespace Controller
 
         private void Update()
         {
-            m_Movement.Move(Time.deltaTime, in m_Axis, in m_Target, m_IsRun, m_IsMoving, out var animAxis, out var isAir);
+            // La dirección "forward" de la cámara, pero proyectada en el plano XZ
+            Vector3 cameraForward = cameraTransform.forward;
+            cameraForward.y = 0f;
+            cameraForward.Normalize();
+
+            // El target ahora es la posición del jugador + la forward de la cámara
+            Vector3 moveTarget = transform.position + cameraForward;
+
+            m_Movement.Move(Time.deltaTime, in m_Axis, in moveTarget, m_IsRun, m_IsMoving, out var animAxis, out var isAir);
             m_Animation.Animate(in animAxis, m_IsRun ? 1f : 0f, Time.deltaTime);
         }
+
 
         private void OnAnimatorIK()
         {
