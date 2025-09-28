@@ -14,9 +14,8 @@ namespace Controller
 
         [Header("Debug")]
         [SerializeField] private NoiseCircle noiseCircle;
-        [SerializeField] private int radiowalk;
-        [SerializeField] private int radiorun;
-
+        [SerializeField] private int radiowalk = 3;
+        [SerializeField] private int radiorun = 7;
 
         [Header("Camera")]
         [SerializeField] private PlayerCamera m_Camera;
@@ -40,12 +39,22 @@ namespace Controller
         private Vector2 m_MouseDelta;
         private float m_Scroll;
 
+        // para suavizar el cambio de radio
+        private float targetRadius;
+
         private void Awake()
         {
             m_Mover = GetComponent<CreatureMover>();
             m_AudioSource = GetComponent<AudioSource>();
             m_AudioSource.loop = true; // ahora los clips se repiten
             m_AudioSource.playOnAwake = false;
+
+            if (noiseCircle != null)
+            {
+                noiseCircle.visible = true;
+                noiseCircle.radius = 1;
+                targetRadius = 1;
+            }
         }
 
         private void Update()
@@ -53,6 +62,12 @@ namespace Controller
             GatherInput();
             SetInput();
             HandleFootsteps();
+
+            // transición suave del radio del círculo
+            if (noiseCircle != null)
+            {
+                noiseCircle.radius = Mathf.Lerp(noiseCircle.radius, targetRadius, Time.deltaTime * 5f);
+            }
         }
 
         public void GatherInput()
@@ -106,7 +121,7 @@ namespace Controller
                     if (noiseCircle != null)
                     {
                         noiseCircle.visible = true;
-                        noiseCircle.radius = radiorun; // radio cuando corre
+                        targetRadius = radiorun; // transición hacia correr
                     }
                 }
                 else
@@ -117,7 +132,7 @@ namespace Controller
                     if (noiseCircle != null)
                     {
                         noiseCircle.visible = true;
-                        noiseCircle.radius = radiowalk; // radio cuando camina
+                        targetRadius = radiowalk; // transición hacia caminar
                     }
                 }
 
@@ -135,10 +150,8 @@ namespace Controller
                     m_AudioSource.Stop();
 
                 if (noiseCircle != null)
-                    noiseCircle.visible = false;
+                    targetRadius = 1f; // transición al radio mínimo
             }
-
-
         }
     }
 }
