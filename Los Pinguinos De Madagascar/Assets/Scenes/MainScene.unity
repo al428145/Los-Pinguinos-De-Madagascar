@@ -10427,7 +10427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   segments: 50
-  radius: 6
+  radius: 9
   circleColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!135 &234203855
 SphereCollider:
@@ -10563,7 +10563,7 @@ Transform:
   m_GameObject: {fileID: 234203853}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -387.7, y: 0, z: 24.1}
+  m_LocalPosition: {x: -265, y: 0, z: -16.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -33077,6 +33077,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Pinguin_001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527881004230699645, guid: 66f01a8db88f9644baed659d1f91cdca,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 2197702747431416006, guid: 66f01a8db88f9644baed659d1f91cdca,
         type: 3}
