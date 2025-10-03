@@ -1,16 +1,41 @@
+//using System.Numerics;
 using UnityEngine;
+using Vector3 = UnityEngine.Vector3;
+
+public enum MovementType
+{
+    Idle,
+    Walk,
+    Run
+}
+
+public class MovementSettings
+{
+    public float idle = 0f;
+    public float walk = 2f;
+    public float run = 3f;
+
+    public float GetSpeed(MovementType type)
+    {
+        switch (type)
+        {
+            case MovementType.Walk: return walk;
+            case MovementType.Run: return run;
+            default: return idle;
+        }
+    }
+}
 
 public abstract class NPCBase : MonoBehaviour
 {
     [Header("Parámetros de Movimiento")]
 
-    [SerializeField, Range(0, 3f)]
-    private float velocidad = 3f;
+    public MovementSettings speeds = new MovementSettings();
 
     [SerializeField, Range(0, 5f)]
     private float rangoDeteccion = 5f;
     public float distanciaMinima = 0.5f;
-    
+
     [SerializeField, Range(0, 5f)]
     public float velocidadRotacion = 5f;
 
@@ -26,12 +51,14 @@ public abstract class NPCBase : MonoBehaviour
 
     protected virtual void MoverHacia(Vector3 objetivo)
     {
+        float velocidad = speeds.GetSpeed(MovementType.Walk);
+
         Vector3 direccion = objetivo - transform.position;
         direccion.y = 0f;
         float distancia = direccion.magnitude;
         direccion.Normalize();
 
-        float currentSpeed = 0f;
+        float currentSpeed = speeds.GetSpeed(MovementType.Idle);
 
         if (distancia > distanciaMinima)
         {
@@ -47,6 +74,28 @@ public abstract class NPCBase : MonoBehaviour
         {
             animator.SetFloat("Speed", currentSpeed);
         }
+    }
+
+    public virtual void HandleNoise(Vector3 noisePosition)
+    {
+        //Debug.Log($"{gameObject.name} escuchó ruido en {noisePosition}");
+    }
+
+    protected virtual void LookAtNoise(Vector3 noisePosition)
+    {
+        Vector3 direccion = noisePosition - transform.position;
+        direccion.y = 0f;
+        if (direccion.sqrMagnitude > 0.1f)
+        {
+            Quaternion rotObjeto = Quaternion.LookRotation(direccion);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rotObjeto, velocidadRotacion * Time.deltaTime);
+        }
+
+        if (animator != null)
+        {
+            animator.SetFloat("Speed", speeds.GetSpeed(MovementType.Idle));
+        }
+
     }
 
 }

@@ -1,8 +1,12 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(LineRenderer))]
 public class EnemyNoiseDetector : MonoBehaviour
 {
+    public event Action<Vector3> OnNoiseHeard;
+    private NPCBase npcBase;
+    
     [Header("Player Reference")]
     [SerializeField] private Transform player;
     [SerializeField] private NoiseCircle playerNoiseCircle;
@@ -20,6 +24,7 @@ public class EnemyNoiseDetector : MonoBehaviour
 
     private void Awake()
     {
+        npcBase = GetComponent<NPCBase>();
         // Configuramos LineRenderer
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.loop = true;
@@ -41,14 +46,14 @@ public class EnemyNoiseDetector : MonoBehaviour
         float distance = Vector3.Distance(npcCenter, playerCenter);
 
         // DEBUG: imprimir posiciones y distancia
-        Debug.Log($"NPC Pos: {npcCenter}, Player Pos: {playerCenter}, Distance: {distance}, Combined Radius: {combinedRadius}");
+        //Debug.Log($"NPC Pos: {npcCenter}, Player Pos: {playerCenter}, Distance: {distance}, Combined Radius: {combinedRadius}");
 
         if (distance <= combinedRadius)
         {
             detectionTimer += Time.deltaTime;
             if (detectionTimer >= detectionDelay)
             {
-                Debug.Log("¡Jugador detectado por ruido!");
+                npcBase.HandleNoise(playerCenter);
             }
         }
         else
@@ -56,7 +61,7 @@ public class EnemyNoiseDetector : MonoBehaviour
             detectionTimer = 0f;
         }
 
-        // Visualización del círculo del NPC
+        // Visualizaciï¿½n del cï¿½rculo del NPC
         DrawDetectionCircle(detectionRange);
     }
 
