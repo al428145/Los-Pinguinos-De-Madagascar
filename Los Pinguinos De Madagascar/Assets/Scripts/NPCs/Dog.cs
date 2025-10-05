@@ -6,17 +6,18 @@ public class Dog : NPCBase
     {
         Patrol,
         Alerted,
-        Investigate
+        Investigate,
+        Persecute
     }
 
     [Header("Zona de Patrulla")]
     public BoxCollider zonaPatrulla;
     private Vector3 destinoRandom;
-    public DogState state = DogState.Patrol;
+    private DogState state = DogState.Patrol;
     private Vector3 noiseSource;
     private bool playerStillInRange;
+    private bool playerIsBeingSeen;
     private float alertTimer;
-    private EnemyNoiseDetector noiseDetector;
 
     void Start()
     {
@@ -40,7 +41,7 @@ public class Dog : NPCBase
                 alertTimer += Time.deltaTime;
 
                 LookAtNoise(noiseSource);
-                if (alertTimer >= 2f && !playerStillInRange)
+                if (alertTimer >= 2f && !playerStillInRange && !playerIsBeingSeen)
                 {
                     Debug.Log("Pasando a patrullar");
                     state = DogState.Patrol;
@@ -48,7 +49,7 @@ public class Dog : NPCBase
                     ElegirNuevoDestino();
                 }
 
-                else if (alertTimer >= 2f && playerStillInRange)
+                else if (alertTimer >= 2f && (playerStillInRange || playerIsBeingSeen))
                 {
                     Debug.Log($"{gameObject.name} pasa a investigar!");
                     state = DogState.Investigate;
@@ -57,9 +58,36 @@ public class Dog : NPCBase
                 break;
 
             case DogState.Investigate:
+                MoverHacia(noiseSource);
+                Vector3 direccion = noiseSource - transform.position;
+                direccion.y = 0f;
+                float distancia = direccion.magnitude;
+                direccion.Normalize();
+                if (distancia <= 0.5f)
+                {
+                    Debug.Log("He llegado a la fuente del ruido");
+                    if (playerIsBeingSeen)
+                    {
+                        //Coments pa mañana: llamar a funcion en npcbase que tenga los nodos que debe seguir
+                        // y que los siga en funcion de las diferentes posiciones.
+                        state = DogState.Persecute;
+                        Debug.Log("Dog pasa a perseguir");
+                    }
+
+                    else
+                    {
+                        //comentarios pa mañana: llamar a corrutina que espere 1 segundo o 2
+                        //en NPCBase y que vuelva a patrol.
+                        state = DogState.Patrol;
+                    }
+                }
+                break;
+
+            case DogState.Persecute:
                 break;
         }
         playerStillInRange = false;
+        playerIsBeingSeen = false;
     }
 
     void ElegirNuevoDestino()
@@ -79,11 +107,24 @@ public class Dog : NPCBase
     {
         base.HandleNoise(noisePosition);
 
-        noiseSource = noisePosition;
         playerStillInRange = true;
         if (state == DogState.Patrol)
         {
             state = DogState.Alerted;
+            noiseSource = noisePosition;
+            alertTimer = 0f;
+        }
+    }
+
+    public override void HandleVision(Vector3 playerPosition)
+    {
+        base.HandleVision(playerPosition);
+
+        playerIsBeingSeen = true;
+        if (state == DogState.Patrol)
+        {
+            state = DogState.Alerted;
+            noiseSource = playerPosition;
             alertTimer = 0f;
         }
     }

@@ -76,10 +76,9 @@ public abstract class NPCBase : MonoBehaviour
         }
     }
 
-    public virtual void HandleNoise(Vector3 noisePosition)
-    {
-        //Debug.Log($"{gameObject.name} escuchó ruido en {noisePosition}");
-    }
+    public virtual void HandleNoise(Vector3 noisePosition){}
+
+    public virtual void HandleVision(Vector3 playerPosition){}
 
     protected virtual void LookAtNoise(Vector3 noisePosition)
     {
