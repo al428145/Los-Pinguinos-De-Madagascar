@@ -16,6 +16,7 @@ public class Dog : NPCBase
     private Vector3 noiseSource;
     private bool playerStillInRange;
     private float alertTimer;
+    private EnemyNoiseDetector noiseDetector;
 
     void Start()
     {
@@ -41,6 +42,7 @@ public class Dog : NPCBase
                 LookAtNoise(noiseSource);
                 if (alertTimer >= 2f && !playerStillInRange)
                 {
+                    Debug.Log("Pasando a patrullar");
                     state = DogState.Patrol;
                     alertTimer = 0;
                     ElegirNuevoDestino();
@@ -79,7 +81,7 @@ public class Dog : NPCBase
 
         noiseSource = noisePosition;
         playerStillInRange = true;
-        if (state != DogState.Alerted)
+        if (state == DogState.Patrol)
         {
             state = DogState.Alerted;
             alertTimer = 0f;
