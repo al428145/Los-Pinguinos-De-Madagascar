@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 1725568244072233742}
   - component: {fileID: 167072712094450224}
   - component: {fileID: 2574781832949345164}
+  - component: {fileID: 2806458839888155854}
   - component: {fileID: 3134905925185581740}
   - component: {fileID: 6077152751186011650}
   - component: {fileID: 322531969250618988}
@@ -1016,7 +1017,29 @@ MonoBehaviour:
   distanciaMinima: 0.5
   velocidadRotacion: 5
   zonaPatrulla: {fileID: 0}
-  state: 0
+--- !u!114 &2806458839888155854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5902342478587256338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c09650e7496fc342944cef921aa19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 80
+  tiltDown: 0
+  player: {fileID: 0}
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  obstructionMask:
+    serializedVersion: 2
+    m_Bits: 64
+  canSeePlayer: 0
 --- !u!82 &3134905925185581740
 AudioSource:
   m_ObjectHideFlags: 0
