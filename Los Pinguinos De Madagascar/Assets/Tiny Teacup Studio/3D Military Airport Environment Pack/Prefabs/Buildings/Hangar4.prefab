@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3083721550182016286}
   - component: {fileID: 950087037816410580}
   - component: {fileID: 4360652107854132948}
-  m_Layer: 0
+  - component: {fileID: 8325152866895767836}
+  m_Layer: 6
   m_Name: Hangar4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,9 +61,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -110,6 +108,27 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 2534964839176971238, guid: 631221d6f5b0e8440b1484d99492c50d, type: 3}
+--- !u!65 &8325152866895767836
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598671561847451649}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 21.972404, y: 6.1000004, z: 18.600002}
+  m_Center: {x: 0, y: 3.0499997, z: -0.4033185}
 --- !u!1001 &8750417081195219662
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -187,6 +206,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Tile
+      objectReference: {fileID: 0}
+    - target: {fileID: 8901495380476537616, guid: 38fcb473a8f39364e919afa6fc18e6d7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
