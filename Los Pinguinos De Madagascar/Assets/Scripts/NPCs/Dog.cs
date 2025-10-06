@@ -84,6 +84,7 @@ public class Dog : NPCBase
                 break;
 
             case DogState.Persecute:
+                //llamar a funcion de NPCBase que persiga y cambie velocidad
                 break;
         }
         playerStillInRange = false;
