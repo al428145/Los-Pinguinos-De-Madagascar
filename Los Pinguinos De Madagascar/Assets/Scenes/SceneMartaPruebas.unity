@@ -37804,7 +37804,7 @@ MonoBehaviour:
   maxDistance: 8
   sensitivity: {x: 2, y: 1.2}
   minYAngle: 5
-  maxYAngle: 40
+  maxYAngle: 60
   lookOffset: {x: 0, y: 2, z: 0}
 --- !u!114 &784551318
 MonoBehaviour:

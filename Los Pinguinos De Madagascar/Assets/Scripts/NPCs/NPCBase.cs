@@ -11,6 +11,7 @@ public enum MovementType
 
 public class MovementSettings
 {
+    //poner publico para poder modificarlo desde el inspector
     public float idle = 0f;
     public float walk = 2f;
     public float run = 3f;
