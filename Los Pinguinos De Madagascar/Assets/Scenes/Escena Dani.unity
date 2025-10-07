@@ -52023,34 +52023,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1255655519}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1256739680 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
-    type: 3}
-  m_PrefabInstance: {fileID: 7463491005147365547}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1256739690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1256739680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d018a1279e6e3a4ab6f6fb567e6520a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 90
-  player: {fileID: 1631142533}
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 0
-  obstructionMask:
-    serializedVersion: 2
-    m_Bits: 0
-  canSeePlayer: 0
 --- !u!1001 &1257898993
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65947,6 +65919,59 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1634995395}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1636229343
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1636229345}
+  - component: {fileID: 1636229344}
+  m_Layer: 0
+  m_Name: Zona Patrulla 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1636229344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636229343}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 8.685298, y: 1, z: 11.819832}
+  m_Center: {x: 0.9210086, y: 0, z: -0.35181427}
+--- !u!4 &1636229345
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636229343}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -0.61011, z: 76.8}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1642465696
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -71357,59 +71382,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1763186527}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1764922658
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1764922660}
-  - component: {fileID: 1764922659}
-  m_Layer: 0
-  m_Name: Zona Patrulla 1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!65 &1764922659
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764922658}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 20.390835, y: 1, z: 24.70414}
-  m_Center: {x: -1.8563366, y: 0, z: 11.85207}
---- !u!4 &1764922660
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1764922658}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 64.42095, y: 0.59, z: 67.67218}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1767698252
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86610,7 +86582,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 61.7
+      value: 2.13
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -86620,7 +86592,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 68.65
+      value: 74.770004
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -86666,7 +86638,12 @@ PrefabInstance:
         type: 3}
       propertyPath: zonaPatrulla
       value: 
-      objectReference: {fileID: 1764922659}
+      objectReference: {fileID: 1636229344}
+    - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1631142533}
     - target: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_Name
@@ -86680,11 +86657,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1256739690}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3b0cf7cf30657e14bb71cef0f0f114cc, type: 3}
 --- !u!1001 &8595435669523545505
 PrefabInstance:
@@ -86787,4 +86760,4 @@ SceneRoots:
   - {fileID: 1261563895}
   - {fileID: 570838684}
   - {fileID: 2453945216055496160}
-  - {fileID: 1764922660}
+  - {fileID: 1636229345}

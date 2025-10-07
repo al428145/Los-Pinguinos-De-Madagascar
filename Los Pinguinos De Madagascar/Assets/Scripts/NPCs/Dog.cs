@@ -85,6 +85,7 @@ public class Dog : NPCBase
 
             case DogState.Persecute:
                 //llamar a funcion de NPCBase que persiga y cambie velocidad
+                
                 break;
         }
         playerStillInRange = false;
@@ -96,12 +97,16 @@ public class Dog : NPCBase
         if (zonaPatrulla == null) return;
 
         // Generar punto aleatorio dentro de la zona
-        Vector3 centro = zonaPatrulla.center + zonaPatrulla.transform.position;
+        Vector3 centro = zonaPatrulla.transform.TransformPoint(zonaPatrulla.center);
         Vector3 tamanio = zonaPatrulla.size / 2;
 
-        float x = Random.Range(centro.x - tamanio.x, centro.x + tamanio.x);
-        float z = Random.Range(centro.z - tamanio.z, centro.z + tamanio.z);
-        destinoRandom = new Vector3(x, transform.position.y, z);
+        float x = Random.Range(-tamanio.x, tamanio.x);
+        float z = Random.Range(-tamanio.z, tamanio.z);
+        Vector3 puntoLocal = new Vector3(x, 0f, z); 
+        Vector3 puntoMundo = zonaPatrulla.transform.TransformPoint(puntoLocal + zonaPatrulla.center);
+
+        destinoRandom = new Vector3(puntoMundo.x, transform.position.y, puntoMundo.z);
+        Debug.Log(destinoRandom);
     }
 
     public override void HandleNoise(Vector3 noisePosition)
