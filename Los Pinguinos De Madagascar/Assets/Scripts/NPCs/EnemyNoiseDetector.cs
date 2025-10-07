@@ -45,9 +45,6 @@ public class EnemyNoiseDetector : MonoBehaviour
         float combinedRadius = detectionRange + playerNoiseCircle.radius;
         float distance = Vector3.Distance(npcCenter, playerCenter);
 
-        // DEBUG: imprimir posiciones y distancia
-        //Debug.Log($"NPC Pos: {npcCenter}, Player Pos: {playerCenter}, Distance: {distance}, Combined Radius: {combinedRadius}");
-
         if (distance <= combinedRadius)
         {
             detectionTimer += Time.deltaTime;
