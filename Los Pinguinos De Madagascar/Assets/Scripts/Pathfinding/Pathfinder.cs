@@ -71,4 +71,41 @@ public class Pathfinder : MonoBehaviour
 
         return path;
     }
+
+    public static Waypoint FindTheNearestWaypointEnemy(Vector3 enemyPosition, Vector3 playerPosition, List<Waypoint> AllWaypoint)
+    {
+        Waypoint bestWaypoint = null;
+        float bestDistance = Mathf.Infinity;
+
+        //Direction to the player
+        Vector3 directionToPlayer = (playerPosition-enemyPosition).normalized;
+
+        foreach (var waypoint in AllWaypoint)
+        {
+            Vector3 dirToWaypoint = (waypoint.position - enemyPosition).normalized;
+            float dot = Vector3.Distance(directionToPlayer, dirToWaypoint);
+
+            if(dot > 0f)
+            {
+                float distance = Vector3.Distance(enemyPosition, waypoint.position);
+                if(distance < bestDistance)
+                {
+                    bestDistance = distance;
+                    bestWaypoint = waypoint;
+                }
+            }
+        }
+
+        if(bestWaypoint == null)
+        {
+            bestWaypoint = AllWaypoint.OrderBy(w => Vector3.Distance(enemyPosition, w.position)).FirstOrDefault();
+        }
+
+        return bestWaypoint;
+    }
+
+    public static Waypoint FindNearestWaypointPlayer(Vector3 playerPos, List<Waypoint> allWaypoints)
+    {
+        return allWaypoints.OrderBy(w => Vector3.Distance(playerPos, w.position)).FirstOrDefault();
+    }
 }
