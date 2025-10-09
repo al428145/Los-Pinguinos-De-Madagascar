@@ -77,4 +77,9 @@ public class SecurityCamera : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(tiltDown, angleInDegrees + transform.eulerAngles.y, 0);
         return rotation * Vector3.forward;
     }
+
+    public void SetDetectionEnabled(bool enabled)
+    {
+        this.enabled = enabled;
+    }   
 }

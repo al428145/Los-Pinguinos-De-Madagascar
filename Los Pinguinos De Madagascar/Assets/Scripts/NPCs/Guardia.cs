@@ -1,25 +1,40 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Guardia : NPCBase
+public class Guard : NPCBase
 {
-    [Header("Puntos de Patrulla")]
+    [Header("Puntos de patrulla")]
     public Transform[] puntosDePatrulla;
     private int indiceActual = 0;
 
-    // Update is called once per frame
+    protected override void Awake()
+    {
+        base.Awake();
+        FSM = new StateMachine(this, new System.Type[]
+        {
+            typeof(PatrolState),
+            typeof(AlertedState),
+            typeof(InvestigateState),
+            typeof(PersecuteState)
+        });
+    }
+
+    void Start()
+    {
+        FSM.SetState(typeof(PatrolState));
+    }
+
     void Update()
+    {
+        FSM.Update();
+        PlayerStillInRange = false;
+        PlayerIsBeingSeen = false;
+    }
+
+    public override void SelectNewDestination()
     {
         if (puntosDePatrulla.Length == 0) return;
 
-        destinoActual = puntosDePatrulla[indiceActual].position;
-        MoverHacia(destinoActual);
-
-        if (Vector3.Distance(transform.position, destinoActual) < distanciaMinima)
-        {
-            indiceActual = (indiceActual + 1) % puntosDePatrulla.Length;
-        }
-
+        CurrentDestination = puntosDePatrulla[indiceActual].position;
+        indiceActual = (indiceActual + 1) % puntosDePatrulla.Length;
     }
 }

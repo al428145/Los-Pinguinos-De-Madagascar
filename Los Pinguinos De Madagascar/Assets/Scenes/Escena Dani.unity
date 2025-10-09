@@ -18794,6 +18794,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 181759185}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &412639384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7463491005147365547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c09650e7496fc342944cef921aa19a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &412639386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 167072712094450224, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7463491005147365547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b03d1b7ca37ff142b8cbc5d06b0c075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &413054655
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -65955,7 +65979,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 8.685298, y: 1, z: 11.819832}
+  m_Size: {x: 22.16, y: 1, z: 32.86}
   m_Center: {x: 0.9210086, y: 0, z: -0.35181427}
 --- !u!4 &1636229345
 Transform:
@@ -65966,7 +65990,7 @@ Transform:
   m_GameObject: {fileID: 1636229343}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2, y: -0.61011, z: 76.8}
+  m_LocalPosition: {x: 37, y: -0.61011, z: 84.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -67778,9 +67802,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89d983bc7347f45ae9b765f08544f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoDeteccion: 5
-  distanciaMinima: 0.5
   velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  LastSeenPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
   puntosDePatrulla: []
 --- !u!114 &1682756585
 MonoBehaviour:
@@ -86582,7 +86616,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.13
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -86592,7 +86626,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 74.770004
+      value: 81.7
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -86639,6 +86673,16 @@ PrefabInstance:
       propertyPath: zonaPatrulla
       value: 
       objectReference: {fileID: 1636229344}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: NoiseDetector
+      value: 
+      objectReference: {fileID: 412639386}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: VisionDetector
+      value: 
+      objectReference: {fileID: 412639384}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player

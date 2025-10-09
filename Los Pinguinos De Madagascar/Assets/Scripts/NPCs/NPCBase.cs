@@ -1,101 +1,80 @@
-//using System.Numerics;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
-
-public enum MovementType
-{
-    Idle,
-    Walk,
-    Run
-}
-
-public class MovementSettings
-{
-    //poner publico para poder modificarlo desde el inspector
-    public float idle = 0f;
-    public float walk = 2f;
-    public float run = 3f;
-
-    public float GetSpeed(MovementType type)
-    {
-        switch (type)
-        {
-            case MovementType.Walk: return walk;
-            case MovementType.Run: return run;
-            default: return idle;
-        }
-    }
-}
 
 public abstract class NPCBase : MonoBehaviour
 {
-    [Header("Parámetros de Movimiento")]
-
+    [Header("Movimiento")]
+    public float velocidadRotacion = 5f;
+    public float distanciaMinima = 0.5f;
     public MovementSettings speeds = new MovementSettings();
 
-    [SerializeField, Range(0, 5f)]
-    private float rangoDeteccion = 5f;
-    public float distanciaMinima = 0.5f;
+    [Header("FSM")]
+    public StateMachine FSM;
+    public EnemyNoiseDetector NoiseDetector;
+    public SecurityCamera VisionDetector;
 
-    [SerializeField, Range(0, 5f)]
-    public float velocidadRotacion = 5f;
+    [HideInInspector] public Vector3 CurrentDestination;
+    [HideInInspector] public Vector3 LastHeardPosition;
+    [HideInInspector] public Vector3 LastSeenPosition;
+    [HideInInspector] public bool PlayerStillInRange;
+    [HideInInspector] public bool PlayerIsBeingSeen;
 
-    protected Vector3 destinoActual;
-
-    // Animación
     protected Animator animator;
 
     protected virtual void Awake()
     {
         animator = GetComponent<Animator>();
+        NoiseDetector = GetComponent<EnemyNoiseDetector>();
+        VisionDetector = GetComponent<SecurityCamera>();
     }
 
-    protected virtual void MoverHacia(Vector3 objetivo)
+    public virtual void MoverHacia(Vector3 objetivo, MovementType moveType = MovementType.Walk)
     {
-        float velocidad = speeds.GetSpeed(MovementType.Walk);
+        float velocidadDeseada = speeds.GetSpeed(moveType);
 
         Vector3 direccion = objetivo - transform.position;
         direccion.y = 0f;
         float distancia = direccion.magnitude;
         direccion.Normalize();
 
-        float currentSpeed = speeds.GetSpeed(MovementType.Idle);
+        float currentSpeed = speeds.idle;
 
         if (distancia > distanciaMinima)
         {
-            transform.position += direccion * velocidad * Time.deltaTime;
-
+            transform.position += direccion * velocidadDeseada * Time.deltaTime;
             Quaternion rotObjetivo = Quaternion.LookRotation(direccion);
             transform.rotation = Quaternion.Slerp(transform.rotation, rotObjetivo, velocidadRotacion * Time.deltaTime);
-
-            currentSpeed = velocidad; // usamos la velocidad real
+            currentSpeed = velocidadDeseada;
         }
 
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", currentSpeed);
-        }
+        animator?.SetFloat("Speed", currentSpeed);
     }
 
-    public virtual void HandleNoise(Vector3 noisePosition){}
-
-    public virtual void HandleVision(Vector3 playerPosition){}
-
-    protected virtual void LookAtNoise(Vector3 noisePosition)
+    public virtual void LookAtNoise(Vector3 noisePos)
     {
-        Vector3 direccion = noisePosition - transform.position;
-        direccion.y = 0f;
-        if (direccion.sqrMagnitude > 0.1f)
+        Vector3 dir = noisePos - transform.position;
+        dir.y = 0f;
+        if (dir.sqrMagnitude > 0.1f)
         {
-            Quaternion rotObjeto = Quaternion.LookRotation(direccion);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotObjeto, velocidadRotacion * Time.deltaTime);
+            Quaternion rot = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, rot, velocidadRotacion * Time.deltaTime);
         }
-
-        if (animator != null)
-        {
-            animator.SetFloat("Speed", speeds.GetSpeed(MovementType.Idle));
-        }
-
+        animator?.SetFloat("Speed", speeds.idle);
     }
 
+    public virtual void HandleNoise(Vector3 noisePosition)
+    {
+        LastHeardPosition = noisePosition;
+        PlayerStillInRange = true;
+        FSM?.TriggerEvent(StateEvent.NoiseHeard);
+    }
+
+    public virtual void HandleVision(Vector3 playerPosition)
+    {
+        LastSeenPosition = playerPosition;
+        PlayerIsBeingSeen = true;
+        FSM?.TriggerEvent(StateEvent.PlayerSeen);
+    }
+
+    // Método abstracto que cada NPC implementa distinto
+    public abstract void SelectNewDestination();
 }

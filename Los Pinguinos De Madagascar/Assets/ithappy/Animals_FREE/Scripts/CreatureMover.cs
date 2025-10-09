@@ -74,7 +74,6 @@ namespace Controller
             m_Animation.Animate(in animAxis, m_IsRun ? 1f : 0f, Time.deltaTime);
         }
 
-
         private void OnAnimatorIK()
         {
             m_Animation.AnimateIK(in m_Target, m_LookWeight);

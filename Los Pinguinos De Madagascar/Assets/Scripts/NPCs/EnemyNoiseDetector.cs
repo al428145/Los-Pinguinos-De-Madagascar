@@ -77,10 +77,18 @@ public class EnemyNoiseDetector : MonoBehaviour
         float angle = 0f;
         for (int i = 0; i < circleSegments; i++)
         {
-            float x = Mathf.Cos(Mathf.Deg2Rad * angle) *( radius);
-            float z = Mathf.Sin(Mathf.Deg2Rad * angle) * (radius );
+            float x = Mathf.Cos(Mathf.Deg2Rad * angle) * (radius);
+            float z = Mathf.Sin(Mathf.Deg2Rad * angle) * (radius);
             lineRenderer.SetPosition(i, new Vector3(x, 0, z));
             angle += 360f / circleSegments;
         }
     }
+    
+    public void SetDetectionEnabled(bool enabled)
+    {
+        this.enabled = enabled; // Activa o desactiva el Update()
+        lineRenderer.enabled = enabled && showDetectionCircle;
+    }
+
 }
+
