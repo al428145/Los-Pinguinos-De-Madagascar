@@ -14,7 +14,7 @@ public class Gallina : NPCBase
     [Header("Estados")]
     [SerializeField] private EstadoGallina estadoActual = EstadoGallina.Dormida;
 
-    [Header("Detección y Aviso")]
+    [Header("Detecciï¿½n y Aviso")]
    
     [SerializeField] private float radioAviso = 5f; 
     [SerializeField] private float tiempoAvisando = 2f; 
@@ -78,7 +78,7 @@ public class Gallina : NPCBase
     {
         estaAvisando = true;
 
-        // Hacer algún sonido o animación aquí
+        // Hacer algï¿½n sonido o animaciï¿½n aquï¿½
         AvisarOtrosEnemigos();
 
         StartCoroutine(CambiarEstadoDespuesDe(tiempoAvisando, EstadoGallina.Alerta));
@@ -88,8 +88,8 @@ public class Gallina : NPCBase
 
     private void EstadoAlerta()
     {
-        // Podría moverse lentamente o mirar alrededor
-        // Por ahora, simplemente idle con animación de alerta
+        // Podrï¿½a moverse lentamente o mirar alrededor
+        // Por ahora, simplemente idle con animaciï¿½n de alerta
         if (animator != null)
             animator.SetBool("Alerta", true);
     }
@@ -143,5 +143,10 @@ public class Gallina : NPCBase
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radioAviso);
+    }
+
+    public override void SelectNewDestination()
+    {
+        throw new System.NotImplementedException();
     }
 }
