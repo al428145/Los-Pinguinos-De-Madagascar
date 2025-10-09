@@ -8,7 +8,7 @@ public class EnemyNoiseDetector : MonoBehaviour
     private NPCBase npcBase;
     
     [Header("Player Reference")]
-    [SerializeField] private Transform player;
+    [SerializeField] public Transform player;
     [SerializeField] private NoiseCircle playerNoiseCircle;
 
     [Header("Detection Settings")]
