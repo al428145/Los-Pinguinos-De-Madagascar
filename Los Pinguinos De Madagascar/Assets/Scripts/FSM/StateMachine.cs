@@ -40,4 +40,9 @@ public class StateMachine
         if (next != null)
             SetState(next);
     }
+
+    public State getState()
+    {
+        return currentState;
+    }
 }

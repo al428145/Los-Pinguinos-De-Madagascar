@@ -73,7 +73,10 @@ public abstract class NPCBase : MonoBehaviour
 
     public virtual void HandleNoise(Vector3 noisePosition)
     {
-        LastHeardPosition = noisePosition;
+        if(FSM.getState() is PatrolState)
+        {
+            LastHeardPosition = noisePosition;
+        }
         PlayerStillInRange = true;
         FSM?.TriggerEvent(StateEvent.NoiseHeard);
     }

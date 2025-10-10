@@ -56053,9 +56053,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 10
-  viewAngle: 90
-  tiltDown: 20
-  player: {fileID: 1631142533}
+  viewAngle: 60
+  tiltDown: 0
+  player: {fileID: 1434434094}
   targetMask:
     serializedVersion: 2
     m_Bits: 128
@@ -58874,6 +58874,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1454482104356440768, guid: 38be789410d69ef40a29459dfa506f11,
     type: 3}
   m_PrefabInstance: {fileID: 1434299283}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1434434094 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7463491005147365547}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1437565314
 PrefabInstance:
