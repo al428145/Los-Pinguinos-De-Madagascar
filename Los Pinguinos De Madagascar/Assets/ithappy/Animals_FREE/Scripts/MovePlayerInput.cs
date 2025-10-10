@@ -14,10 +14,8 @@ namespace Controller
 
         [Header("Debug")]
         [SerializeField] private NoiseCircle noiseCircle;
-        [SerializeField] private int radiowalkEarth = 3;
-        [SerializeField] private int radiorunEarth = 7;
-        [SerializeField] private int radiowalkAsphalt = 5;
-        [SerializeField] private int radiorunAsphalt = 9;
+        [SerializeField] private int radiowalk = 3;
+        [SerializeField] private int radiorun = 7;
 
         [Header("Camera")]
         [SerializeField] private PlayerCamera m_Camera;
@@ -44,9 +42,6 @@ namespace Controller
         // para suavizar el cambio de radio
         private float targetRadius;
 
-        //to know if the player is on land o asphalt
-        private int surfaceType;
-
         private void Awake()
         {
             m_Mover = GetComponent<CreatureMover>();
@@ -60,8 +55,6 @@ namespace Controller
                 noiseCircle.radius = 1;
                 targetRadius = 1;
             }
-
-            surfaceType = 0;
         }
 
         private void Update()
@@ -70,16 +63,11 @@ namespace Controller
             SetInput();
             HandleFootsteps();
 
-            // transicion suave del radio del circulo
+            // transición suave del radio del círculo
             if (noiseCircle != null)
             {
                 noiseCircle.radius = Mathf.Lerp(noiseCircle.radius, targetRadius, Time.deltaTime * 5f);
             }
-        }
-
-        public void setSurfaceZona(int surface)
-        {
-            surfaceType = surface;
         }
 
         public void GatherInput()
@@ -125,31 +113,27 @@ namespace Controller
                     m_AudioSource.Play();
                 }
 
-                float baseVolume = m_IsRun ? 1f : 0.5f;
-                float surfaceVolumeMultiplier = 1f;
-                int targetWalkRadius = 0;
-                int targetRunRadius = 0;
-
-                if(surfaceType == 0)
+                if (m_IsRun)
                 {
-                    surfaceVolumeMultiplier = 0.7f;
-                    targetRunRadius = radiorunEarth;
-                    targetWalkRadius = radiowalkEarth;
+                    m_AudioSource.volume = 1f;
+                    m_AudioSource.maxDistance = 30f;
+
+                    if (noiseCircle != null)
+                    {
+                        noiseCircle.visible = true;
+                        targetRadius = radiorun; // transición hacia correr
+                    }
                 }
-                else if (surfaceType == 1)
+                else
                 {
-                    surfaceVolumeMultiplier = 1.2f;
-                    targetRunRadius = radiorunAsphalt;
-                    targetWalkRadius = radiowalkAsphalt;
-                }
+                    m_AudioSource.volume = 0.5f;
+                    m_AudioSource.maxDistance = 15f;
 
-                m_AudioSource.volume = baseVolume * surfaceVolumeMultiplier;
-                m_AudioSource.maxDistance = m_IsRun ? 30f : 15f;
-
-                if(noiseCircle != null)
-                {
-                    noiseCircle.visible = true;
-                    targetRadius = m_IsRun ? targetRunRadius : targetWalkRadius;
+                    if (noiseCircle != null)
+                    {
+                        noiseCircle.visible = true;
+                        targetRadius = radiowalk; // transición hacia caminar
+                    }
                 }
 
                 if (!m_AudioSource.isPlaying)
@@ -166,7 +150,7 @@ namespace Controller
                     m_AudioSource.Stop();
 
                 if (noiseCircle != null)
-                    targetRadius = 1f; // transicion al radio minimo
+                    targetRadius = 1f; // transición al radio mínimo
             }
         }
     }
