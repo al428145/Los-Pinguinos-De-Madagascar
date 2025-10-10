@@ -13,4 +13,8 @@ public class MenuController : MonoBehaviour
         Application.Quit(); // (Opcional) para salir del juego
         Debug.Log("El juego se cerraría aquí (solo funciona en build).");
     }
+    public void inicio()
+    {
+        SceneManager.LoadScene("inicio"); // Usa el nombre exacto de tu escena principal
+    }
 }
