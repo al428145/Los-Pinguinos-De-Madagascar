@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,11 +14,12 @@ public class Gallina : NPCBase
     [Header("Estados")]
     [SerializeField] private EstadoGallina estadoActual = EstadoGallina.Dormida;
 
-    [Header("Detecci�n y Aviso")]
+    [Header("Detección y Aviso")]
    
     [SerializeField] private float radioAviso = 5f; 
     [SerializeField] private float tiempoAvisando = 2f; 
-    [SerializeField] private LayerMask layerEnemigos; 
+    [SerializeField] private LayerMask layerEnemigos;
+    [SerializeField] private ParticleSystem particulasSueño;
 
     private EnemyNoiseDetector noiseDetector;
     private Transform playerTransform;
@@ -40,6 +41,7 @@ public class Gallina : NPCBase
         {
             playerTransform = noiseDetector.player;
         }
+        ActualizarParticulas();
     }
 
     private void Update()
@@ -64,34 +66,38 @@ public class Gallina : NPCBase
     private void EstadoDormida()
     {
         // cambiar esto para que se muestre el sistema particulas
-        if (animator != null)
-            animator.SetFloat("Speed", speeds.GetSpeed(MovementType.Idle));
+        //if (animator != null)
+        //  animator.SetFloat("Speed", speeds.GetSpeed(MovementType.Idle));
+        ActualizarParticulas();
     }
 
   private void EstadoAvisando()
-{
-    if (playerTransform == null) return;
+   {
+        if (playerTransform == null) return;
 
-    LookAtNoise(playerTransform.position);
+        LookAtNoise(playerTransform.position);
 
-    if (!estaAvisando)
-    {
-        estaAvisando = true;
+        if (!estaAvisando)
+        {
+            estaAvisando = true;
 
-        // Hacer alg�n sonido o animaci�n aqu�
-        AvisarOtrosEnemigos();
+            // Hacer algún sonido o animación aquí
+            AvisarOtrosEnemigos();
 
-        StartCoroutine(CambiarEstadoDespuesDe(tiempoAvisando, EstadoGallina.Alerta));
-    }
-}
+            StartCoroutine(CambiarEstadoDespuesDe(tiempoAvisando, EstadoGallina.Alerta));
+        }
+           
+   }
 
 
     private void EstadoAlerta()
     {
-        // Podr�a moverse lentamente o mirar alrededor
-        // Por ahora, simplemente idle con animaci�n de alerta
+        // Podría moverse lentamente o mirar alrededor
+        // Por ahora, simplemente idle con animación de alerta
         if (animator != null)
             animator.SetBool("Alerta", true);
+       
+
     }
 
 
@@ -100,6 +106,8 @@ public class Gallina : NPCBase
         if (estadoActual == EstadoGallina.Dormida || estadoActual == EstadoGallina.Alerta)
         {
             estadoActual = EstadoGallina.Avisando;
+          
+
         }
     }
 
@@ -122,6 +130,8 @@ public class Gallina : NPCBase
         yield return new WaitForSeconds(segundos);
         estadoActual = nuevoEstado;
         estaAvisando = false; // <- resetear el flag
+        
+
     }
 
 
@@ -131,6 +141,8 @@ public class Gallina : NPCBase
         if (estadoActual == EstadoGallina.Dormida)
         {
             estadoActual = EstadoGallina.Avisando;
+            ActualizarParticulas();
+
         }
     }
 
@@ -138,15 +150,20 @@ public class Gallina : NPCBase
     {
         OnPlayerDetectado(playerPosition);
     }
+    private void ActualizarParticulas()
+    {
+        if (particulasSueño == null) return;
+
+        // Si está dormida → activar el objeto de partículas
+        bool debeEstarActiva = (estadoActual == EstadoGallina.Dormida);
+
+        particulasSueño.gameObject.SetActive(debeEstarActiva);
+    }
+
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, radioAviso);
-    }
-
-    public override void SelectNewDestination()
-    {
-        throw new System.NotImplementedException();
     }
 }

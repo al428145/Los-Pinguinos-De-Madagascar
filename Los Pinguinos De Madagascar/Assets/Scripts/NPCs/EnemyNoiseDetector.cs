@@ -50,6 +50,7 @@ public class EnemyNoiseDetector : MonoBehaviour
             detectionTimer += Time.deltaTime;
             if (detectionTimer >= detectionDelay)
             {
+                Debug.Log($"🔊 [{gameObject.name}] OYÓ AL JUGADOR en posición {playerCenter}");
                 npcBase.HandleNoise(playerCenter);
             }
         }
