@@ -46571,7 +46571,7 @@ Transform:
   m_GameObject: {fileID: 996081418}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.63, y: 0.11367598, z: 44.4}
+  m_LocalPosition: {x: -12.63, y: 0.75, z: 44.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -53514,6 +53514,11 @@ PrefabInstance:
       propertyPath: zonaPatrulla
       value: 
       objectReference: {fileID: 996081419}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: distanciaMinima
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player
@@ -74656,9 +74661,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89d983bc7347f45ae9b765f08544f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoDeteccion: 5
-  distanciaMinima: 0.5
   velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
+  player: {fileID: 0}
   puntosDePatrulla: []
 --- !u!114 &1682756585
 MonoBehaviour:
@@ -74690,6 +74705,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f995020163bf7244a3ee7436e4fb81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
+  player: {fileID: 0}
+  estadoActual: 0
+  radioAviso: 5
+  tiempoAvisando: 2
+  layerEnemigos:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1001 &1682966899
 PrefabInstance:
   m_ObjectHideFlags: 0
