@@ -52,6 +52,5 @@ public class Dog : NPCBase
         Vector3 punto = centro + new Vector3(x, 0f, z);
 
         CurrentDestination = new Vector3(punto.x, transform.position.y, punto.z);
-        Debug.Log("Nuevo destino con margen: " + CurrentDestination);
     }
 }

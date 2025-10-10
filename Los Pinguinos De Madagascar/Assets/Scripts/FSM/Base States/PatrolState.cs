@@ -12,12 +12,19 @@ public class PatrolState : State
 
     public override void Execute(NPCBase owner)
     {
+        // Calcula el vector de dirección entre el NPC y su destino
+        Vector3 direccionAlDestino = owner.CurrentDestination - owner.transform.position;
+
+        // ¡Importante! Ignoramos la diferencia de altura para la comprobación
+        direccionAlDestino.y = 0;
         owner.MoverHacia(owner.CurrentDestination, MovementType.Walk);
-
-        if (Vector3.Distance(owner.transform.position, owner.CurrentDestination) < owner.distanciaMinima)
+        Debug.Log(Vector3.Distance(owner.transform.position, owner.CurrentDestination));
+        if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima * owner.distanciaMinima)
+        {
+            Debug.Log("Ha llegado al destino. Eligiendo uno nuevo.");
             owner.SelectNewDestination();
+        }
     }
-
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerSeen)
