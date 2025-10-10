@@ -17,8 +17,8 @@ public class PersecuteState : State
             if (wm == null) return;
 
             List<Waypoint> waypoints = wm.GetWaypoints();
-            Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(dog.transform.position, dog.LastSeenPosition, waypoints);
-            Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(dog.LastSeenPosition, waypoints);
+            Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(dog.transform.position, dog.player.transform.position, waypoints);
+            Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(dog.player.transform.position, waypoints);
             List<Waypoint> ruta = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
         }
     }

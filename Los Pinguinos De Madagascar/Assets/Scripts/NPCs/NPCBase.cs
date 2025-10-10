@@ -1,3 +1,4 @@
+using Controller;
 using UnityEngine;
 
 public abstract class NPCBase : MonoBehaviour
@@ -9,14 +10,18 @@ public abstract class NPCBase : MonoBehaviour
 
     [Header("FSM")]
     public StateMachine FSM;
+
+    [HideInInspector]
     public EnemyNoiseDetector NoiseDetector;
+
+    [HideInInspector]
     public SecurityCamera VisionDetector;
 
     [HideInInspector] public Vector3 CurrentDestination;
     [HideInInspector] public Vector3 LastHeardPosition;
-    [HideInInspector] public Vector3 LastSeenPosition;
     [HideInInspector] public bool PlayerStillInRange;
     [HideInInspector] public bool PlayerIsBeingSeen;
+    [HideInInspector] public Transform player;
 
     protected Animator animator;
 
@@ -25,6 +30,11 @@ public abstract class NPCBase : MonoBehaviour
         animator = GetComponent<Animator>();
         NoiseDetector = GetComponent<EnemyNoiseDetector>();
         VisionDetector = GetComponent<SecurityCamera>();
+        CreatureMover playerScript = FindObjectOfType<CreatureMover>();
+        if (playerScript != null)
+        {
+            player = playerScript.transform;
+        }
     }
 
     public virtual void MoverHacia(Vector3 objetivo, MovementType moveType = MovementType.Walk)
@@ -70,7 +80,7 @@ public abstract class NPCBase : MonoBehaviour
 
     public virtual void HandleVision(Vector3 playerPosition)
     {
-        LastSeenPosition = playerPosition;
+        LastHeardPosition = playerPosition;
         PlayerIsBeingSeen = true;
         FSM?.TriggerEvent(StateEvent.PlayerSeen);
     }

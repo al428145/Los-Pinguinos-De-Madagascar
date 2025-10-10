@@ -41,6 +41,9 @@ public class AlertedState : State
     {
         if (evt == StateEvent.AlertTimeout)
             return typeof(InvestigateState);
+
+        else if (evt == StateEvent.InvestigateDone)
+            return typeof(PatrolState);
         return null;
     }
 }
