@@ -22786,9 +22786,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89d983bc7347f45ae9b765f08544f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoDeteccion: 5
-  distanciaMinima: 0.5
   velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
+  player: {fileID: 0}
   puntosDePatrulla: []
 --- !u!1001 &444742677
 PrefabInstance:
@@ -27500,11 +27510,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 445066612258978719, guid: 4ec28902914d13545b2a2e107b4687ed,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 445066612258978719, guid: 4ec28902914d13545b2a2e107b4687ed,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
       objectReference: {fileID: 0}
@@ -27557,11 +27562,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hangar_2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7427154787491949374, guid: 4ec28902914d13545b2a2e107b4687ed,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -46228,11 +46228,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7490953376921949785, guid: 3db4795cede81cb4688ba6b988f6f248,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7490953376921949785, guid: 3db4795cede81cb4688ba6b988f6f248,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 68
       objectReference: {fileID: 0}
@@ -46285,11 +46280,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hangar_4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492951839083704823, guid: 3db4795cede81cb4688ba6b988f6f248,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -67367,20 +67357,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1593449314}
     m_Modifications:
-    - target: {fileID: 209363625422578142, guid: cc3cc80fb4c1ffd4cb6c9a603eebdaf6,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1598671561847451649, guid: cc3cc80fb4c1ffd4cb6c9a603eebdaf6,
         type: 3}
       propertyPath: m_Name
       value: Hangar4
-      objectReference: {fileID: 0}
-    - target: {fileID: 2117905669173537467, guid: cc3cc80fb4c1ffd4cb6c9a603eebdaf6,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 2117905669173537467, guid: cc3cc80fb4c1ffd4cb6c9a603eebdaf6,
         type: 3}
@@ -74358,9 +74338,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af89d983bc7347f45ae9b765f08544f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoDeteccion: 5
-  distanciaMinima: 0.5
   velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
+  player: {fileID: 0}
   puntosDePatrulla: []
 --- !u!114 &1682756585
 MonoBehaviour:
@@ -95031,11 +95021,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1593449314}
     m_Modifications:
-    - target: {fileID: 6980402485397282056, guid: c1be3b57fb99b8f4d800d2901350113e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
     - target: {fileID: 6980402485397282056, guid: c1be3b57fb99b8f4d800d2901350113e,
         type: 3}
       propertyPath: m_LocalPosition.x
