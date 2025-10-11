@@ -22,7 +22,7 @@ public class PersecuteState : State
 
     public override void Execute(NPCBase owner)
     {
-       if(ruta == null || ruta.Count == 0)
+        if(rute == null || rute.Count == 0)
         {
             calculateRute(owner);
             return;
@@ -40,13 +40,13 @@ public class PersecuteState : State
 
         //Move to the waypoint
         Waypoint target = rute[currentWaypointIndex];
-        Vector3 dir = (target.position - owner.position).normalized;
-        owner.transform.position += dir * owner.speeds * Time.deltaTime;
+        Vector3 dir = (target.position - owner.transform.position).normalized;
+        owner.transform.position += dir * owner.currentSpeed * Time.deltaTime;
 
         if(dir != Vector3.zero)
             owner.transform.forward = Vector3.Lerp(owner.transform.position, dir, Time.deltaTime * 5f);
         
-        float dis = Vector3.Distance(owner.position.transform, target.position);
+        float dis = Vector3.Distance(owner.transform.position, target.position);
         if(dis <= 0.5f)
         {
             currentWaypointIndex++;
@@ -58,10 +58,9 @@ public class PersecuteState : State
             }
         }
 
-        float playerDist = Vector3.Distance(owner.transform.position, owner.player.transform.position);
-        if(playerDist >= owner.VisionDetector * 2f);
+        if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange);
         {
-            
+            owner.FSM.TriggerEvent(StateEvent.LostPlayer);
         }
 
     }
@@ -81,7 +80,7 @@ public class PersecuteState : State
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.LostPlayer)
-            return typeof(PatrolState);
+            return typeof(returnPatrolState);
         return null;
     }
 }

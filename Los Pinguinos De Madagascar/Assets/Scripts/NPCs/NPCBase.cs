@@ -22,6 +22,7 @@ public abstract class NPCBase : MonoBehaviour
     [HideInInspector] public bool PlayerStillInRange;
     [HideInInspector] public bool PlayerIsBeingSeen;
     [HideInInspector] public Transform player;
+    [HideInInspector] public float currentSpeed;
 
     protected Animator animator;
 
@@ -46,7 +47,7 @@ public abstract class NPCBase : MonoBehaviour
         float distancia = direccion.magnitude;
         direccion.Normalize();
 
-        float currentSpeed = speeds.idle;
+        currentSpeed = speeds.idle;
 
         if (distancia > distanciaMinima)
         {
@@ -88,6 +89,6 @@ public abstract class NPCBase : MonoBehaviour
         FSM?.TriggerEvent(StateEvent.PlayerSeen);
     }
 
-    // Método abstracto que cada NPC implementa distinto
+    // Metodo abstracto que cada NPC implementa distinto
     public abstract void SelectNewDestination();
 }

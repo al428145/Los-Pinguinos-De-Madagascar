@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 732239672715547330}
   m_Layer: 0
   m_Name: Guard
-  m_TagString: Untagged
+  m_TagString: Guard
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -945,6 +945,7 @@ MonoBehaviour:
   PlayerStillInRange: 0
   PlayerIsBeingSeen: 0
   player: {fileID: 0}
+  currentSpeed: 0
   puntosDePatrulla:
   - {fileID: 0}
   - {fileID: 0}

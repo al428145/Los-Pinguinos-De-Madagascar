@@ -6,5 +6,6 @@ public enum StateEvent
     AlertTimeout,
     InvestigateDone,
     StartChase,
-    LostPlayer
+    LostPlayer,
+    returnRute
 }

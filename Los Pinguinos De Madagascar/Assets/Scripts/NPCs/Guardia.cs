@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Guard : NPCBase
 {
     [Header("Puntos de patrulla")]
-    public Transform[] puntosDePatrulla;
+    public List<Waypoint> puntosDePatrulla;
     private int indiceActual = 0;
 
     protected override void Awake()
@@ -14,7 +15,8 @@ public class Guard : NPCBase
             typeof(PatrolState),
             typeof(AlertedState),
             typeof(InvestigateState),
-            typeof(PersecuteState)
+            typeof(PersecuteState),
+            typeof(returnPatrolState)
         });
     }
 
@@ -32,9 +34,9 @@ public class Guard : NPCBase
 
     public override void SelectNewDestination()
     {
-        if (puntosDePatrulla.Length == 0) return;
+        if (puntosDePatrulla.Count == 0) return;
 
         CurrentDestination = puntosDePatrulla[indiceActual].position;
-        indiceActual = (indiceActual + 1) % puntosDePatrulla.Length;
+        indiceActual = (indiceActual + 1) % puntosDePatrulla.Count;
     }
 }

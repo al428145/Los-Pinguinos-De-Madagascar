@@ -1,9 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Dog : NPCBase
 {
     [Header("Zona de Patrulla")]
     public BoxCollider zonaPatrulla;
+    public List<Waypoint> waypointsZonePatrol;
 
     protected override void Awake()
     {

@@ -12,10 +12,10 @@ public class PatrolState : State
 
     public override void Execute(NPCBase owner)
     {
-        // Calcula el vector de dirección entre el NPC y su destino
+        // Calcula el vector de direccion entre el NPC y su destino
         Vector3 direccionAlDestino = owner.CurrentDestination - owner.transform.position;
 
-        // ¡Importante! Ignoramos la diferencia de altura para la comprobación
+        // Importante! Ignoramos la diferencia de altura para la comprobacion
         direccionAlDestino.y = 0;
         owner.MoverHacia(owner.CurrentDestination, MovementType.Walk);
         Debug.Log(Vector3.Distance(owner.transform.position, owner.CurrentDestination));

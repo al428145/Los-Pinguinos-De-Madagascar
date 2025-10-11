@@ -940,7 +940,7 @@ GameObject:
   - component: {fileID: 1784274382449470452}
   m_Layer: 0
   m_Name: Dog
-  m_TagString: Untagged
+  m_TagString: Dog
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1013,10 +1013,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba4672139d338d4eb54695b78685773, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rangoDeteccion: 5
-  distanciaMinima: 0.5
   velocidadRotacion: 5
+  distanciaMinima: 0.5
+  speeds:
+    idle: 0
+    walk: 2
+    run: 3
+  NoiseDetector: {fileID: 0}
+  VisionDetector: {fileID: 0}
+  CurrentDestination: {x: 0, y: 0, z: 0}
+  LastHeardPosition: {x: 0, y: 0, z: 0}
+  PlayerStillInRange: 0
+  PlayerIsBeingSeen: 0
+  player: {fileID: 0}
+  currentSpeed: 0
   zonaPatrulla: {fileID: 0}
+  waypointsZonePatrol: []
 --- !u!114 &2806458839888155854
 MonoBehaviour:
   m_ObjectHideFlags: 0
