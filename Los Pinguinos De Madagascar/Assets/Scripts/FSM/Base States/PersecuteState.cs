@@ -17,7 +17,7 @@ public class PersecuteState : State
         recalcTimer = 0f;
         lastPositionPlayer = owner.player.transform.position;
         wm = Object.FindObjectOfType<WaypointManager>();
-        calculateRute(owner);
+        //calculateRute(owner);
     }
 
     public override void Execute(NPCBase owner)
@@ -25,7 +25,8 @@ public class PersecuteState : State
         if(rute == null || rute.Count == 0)
         {
             calculateRute(owner);
-            return;
+            //Debug.Log(rute.Count);
+            //return;
         }
 
         recalcTimer += Time.deltaTime;
@@ -58,7 +59,7 @@ public class PersecuteState : State
             }
         }
 
-        if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange);
+        if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange)
         {
             owner.FSM.TriggerEvent(StateEvent.LostPlayer);
         }
@@ -71,6 +72,7 @@ public class PersecuteState : State
 
         List<Waypoint> waypoints = wm.GetWaypoints();
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, owner.player.transform.position, waypoints);
+        Debug.Log(enemyWaypoint.position);
         Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.player.transform.position, waypoints);
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
 

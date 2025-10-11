@@ -18,10 +18,10 @@ public class PatrolState : State
         // Importante! Ignoramos la diferencia de altura para la comprobacion
         direccionAlDestino.y = 0;
         owner.MoverHacia(owner.CurrentDestination, MovementType.Walk);
-        Debug.Log(Vector3.Distance(owner.transform.position, owner.CurrentDestination));
+        //Debug.Log(Vector3.Distance(owner.transform.position, owner.CurrentDestination));
         if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima * owner.distanciaMinima)
         {
-            Debug.Log("Ha llegado al destino. Eligiendo uno nuevo.");
+            //Debug.Log("Ha llegado al destino. Eligiendo uno nuevo.");
             owner.SelectNewDestination();
         }
     }

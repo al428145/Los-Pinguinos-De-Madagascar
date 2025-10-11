@@ -11,9 +11,9 @@ public class Waypoint : MonoBehaviour
     // Radio maximo para buscar vecinos (puedes ajustarlo en el inspector)
     public float connectionRadius = 20f;
 
-    void Awake()
+    void Start()
     {
-        position = transform.position;
+        position = transform.position - transform.parent.position;
     }
 
     void OnDrawGizmos()
