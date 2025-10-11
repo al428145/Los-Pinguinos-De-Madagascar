@@ -7,5 +7,7 @@ public enum StateEvent
     InvestigateDone,
     StartChase,
     LostPlayer,
-    returnRute
+    returnRute,
+    PlayerHeard = NoiseHeard, // alias para gallina
+    AlertEnd = AlertTimeout   // alias opcional
 }

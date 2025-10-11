@@ -24,7 +24,7 @@ public abstract class NPCBase : MonoBehaviour
     [HideInInspector] public Transform player;
     [HideInInspector] public float currentSpeed;
 
-    protected Animator animator;
+    [HideInInspector] public Animator animator;
 
     protected virtual void Awake()
     {
