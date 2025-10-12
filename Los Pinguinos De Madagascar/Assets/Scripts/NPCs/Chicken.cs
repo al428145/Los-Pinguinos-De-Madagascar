@@ -3,20 +3,21 @@ using UnityEngine;
 public class Gallina : NPCBase
 {
     [Header("Gallina Settings")]
-    public float radioAviso = 5f;
+    public float radioAviso = 50f;
     public float tiempoAvisando = 2f;
     public LayerMask layerEnemigos;
     [Header("Efectos Visuales y sonoro")]
     public ParticleSystem particulasDormido;
     public AudioSource sonidoAlerta;
     private Renderer rend;
+    public Vector3 initialPosition;
 
     protected override void Awake()
     {
         base.Awake();
         rend = GetComponent<Renderer>();
 
-
+        initialPosition = transform.position;
         // Configurar FSM con los 3 estados
         FSM = new StateMachine(this, new System.Type[]
         {

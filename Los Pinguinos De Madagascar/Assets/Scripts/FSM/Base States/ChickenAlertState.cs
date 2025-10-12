@@ -3,22 +3,28 @@ using UnityEngine;
 public class ChickenAlertState : State
 {
     private float timer;
-    private const float alertDuration = 5f; // 🕒 Duración de la alerta en segundos
+    private const float alertDuration = 5f;
+
+    private AlertPanelController alertPanel;
+    private Vector3 centerPosition;
+    private float angle; // Ángulo actual en la circunferencia
+    private float radius = 3f; // Radio del círculo
+    private float angularSpeed = 90f; // Grados por segundo
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Gallina entra en AlertState 🐔⚠️");
-
         timer = 0f;
+        centerPosition = owner.transform.position; // Guardar posición inicial como centro
+        angle = 0f;
 
-        var renderer = owner.GetComponent<Renderer>();
-        if (renderer != null)
-            renderer.material.color = Color.yellow;
+        // Buscar panel de alerta
+        if (alertPanel == null)
+            alertPanel = GameObject.FindObjectOfType<AlertPanelController>();
+        alertPanel?.ShowAlert();
 
         if (owner.animator != null)
             owner.animator.SetBool("Alerta", true);
 
-        // Activar sensores
         owner.NoiseDetector?.SetDetectionEnabled(true);
         owner.VisionDetector?.SetDetectionEnabled(true);
     }
@@ -27,41 +33,36 @@ public class ChickenAlertState : State
     {
         timer += Time.deltaTime;
 
-        // 👀 Si vuelve a ver o escuchar al jugador, se mantiene alerta
-        if (owner.VisionDetector != null && owner.VisionDetector.HasSeenPlayer)
+        // Actualizar ángulo
+        angle += angularSpeed * Time.deltaTime;
+        if (angle >= 360f)
         {
-            owner.HandleVision(owner.VisionDetector.LastSeenPosition);
-            owner.VisionDetector.HasSeenPlayer = false;
-            timer = 0f; // Reinicia el temporizador
-        }
-
-        if (owner.NoiseDetector != null && owner.NoiseDetector.HasHeardNoise)
-        {
-            owner.HandleNoise(owner.NoiseDetector.LastNoisePosition);
-            owner.NoiseDetector.HasHeardNoise = false;
-            timer = 0f;
-        }
-
-        // 👁️ Mantener mirando hacia donde escuchó o vio algo
-        if (owner.LastHeardPosition != Vector3.zero)
-            owner.LookAtNoise(owner.LastHeardPosition);
-
-        // ⏳ Si pasan 5 segundos sin estímulos, volver a dormir
-        if (timer >= alertDuration)
-        {
-            Debug.Log("Gallina se calma y vuelve a dormir 😴");
+            // Vuelta completa, volver al centro y cambiar a sueño
             owner.FSM.TriggerEvent(StateEvent.AlertTimeout);
+            return;
         }
+
+        // Calcular posición circular
+        float rad = angle * Mathf.Deg2Rad;
+        Vector3 offset = new Vector3(Mathf.Cos(rad), 0, Mathf.Sin(rad)) * radius;
+        Vector3 targetPosition = centerPosition + offset;
+
+        // Mover gallina hacia esa posición
+        owner.MoverHacia(targetPosition, MovementType.Walk);
     }
 
     public override void Exit(NPCBase owner)
     {
+        // Volver al centro exacto
+        owner.transform.position = centerPosition;
+
         if (owner.animator != null)
             owner.animator.SetBool("Alerta", false);
 
-        // Desactivar visión/ruido (para que no gaste recursos mientras duerme)
         owner.NoiseDetector?.SetDetectionEnabled(false);
         owner.VisionDetector?.SetDetectionEnabled(false);
+
+        alertPanel?.HideAlert();
     }
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
