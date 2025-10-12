@@ -51,7 +51,7 @@ public class Gallina : NPCBase
 
     public override void HandleVision(Vector3 playerPosition)
     {
-        Debug.Log("Gallina vió ruido - FSM: " + FSM);//si aparece este
+        Debug.Log("Gallina vió ruido - FSM: " + FSM);
         
         base.HandleVision(playerPosition);
         FSM.TriggerEvent(StateEvent.PlayerSeen);

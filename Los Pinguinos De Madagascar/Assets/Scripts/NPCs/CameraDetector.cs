@@ -1,33 +1,50 @@
 using UnityEngine;
 using System;
+using Controller;
 
 public class SecurityCamera : MonoBehaviour
 {
     private NPCBase npcBase;
-    [Header("Configuraci�n del campo de visi�n")]
-    public float viewRadius = 10f;        // Distancia m�xima de visi�n
+
+    [Header("Configuración del campo de visión")]
+    public float viewRadius = 10f;        // Distancia máxima de visión
     [Range(0, 360)]
-    public float viewAngle = 90f;         // �ngulo de visi�n (ej: 90�)
+    public float viewAngle = 90f;         // Ángulo de visión
     [Range(-89f, 89f)]
-    public float tiltDown = 20f;          // Inclinaci�n hacia abajo en grados
+    public float tiltDown = 20f;          // Inclinación hacia abajo
 
     [Header("Referencia del jugador")]
     public Transform player;              // Asigna el jugador en el inspector
 
-    [Header("Opciones de detecci�n")]
+    [Header("Opciones de detección")]
     public LayerMask targetMask;          // Capa del jugador
-    public LayerMask obstructionMask;     // Capa de obst�culos (paredes, etc.)
+    public LayerMask obstructionMask;     // Capa de obstáculos
 
     [Header("Debug")]
     public bool canSeePlayer;
 
+    [HideInInspector] public bool HasSeenPlayer = false;
+    [HideInInspector] public Vector3 LastSeenPosition;
+
+    private bool detectionEnabled = true;
+
     void Awake()
     {
         npcBase = GetComponent<NPCBase>();
+
+        if (player == null)
+        {
+            var playerObj = FindObjectOfType<CreatureMover>();
+            if (playerObj != null)
+                player = playerObj.transform;
+        }
     }
 
     void Update()
     {
+        if (!detectionEnabled || player == null)
+            return;
+
         DetectPlayer();
     }
 
@@ -36,19 +53,20 @@ public class SecurityCamera : MonoBehaviour
         Vector3 dirToPlayer = (player.position - transform.position).normalized;
         float distToPlayer = Vector3.Distance(transform.position, player.position);
 
-        // Ajustamos la direcci�n forward con la inclinaci�n vertical
         Vector3 forwardTilted = Quaternion.Euler(tiltDown, 0, 0) * transform.forward;
 
-        // Verificamos si el jugador est� dentro del �ngulo de visi�n
         if (Vector3.Angle(forwardTilted, dirToPlayer) < viewAngle / 2)
         {
             if (distToPlayer < viewRadius)
             {
-                // Raycast con origen inclinado hacia abajo
                 if (!Physics.Raycast(transform.position, dirToPlayer, distToPlayer, obstructionMask))
                 {
                     canSeePlayer = true;
-                    npcBase.HandleVision(player.position);
+
+                    HasSeenPlayer = true;
+                    LastSeenPosition = player.position;
+
+                    npcBase?.HandleVision(player.position);
 
                     return;
                 }
@@ -73,13 +91,13 @@ public class SecurityCamera : MonoBehaviour
 
     Vector3 DirFromAngle(float angleInDegrees)
     {
-        // Incluir inclinaci�n vertical
         Quaternion rotation = Quaternion.Euler(tiltDown, angleInDegrees + transform.eulerAngles.y, 0);
         return rotation * Vector3.forward;
     }
 
     public void SetDetectionEnabled(bool enabled)
     {
-        this.enabled = enabled;
-    }   
+        detectionEnabled = enabled;
+        canSeePlayer = false;
+    }
 }

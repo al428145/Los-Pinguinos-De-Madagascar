@@ -8,7 +8,7 @@ public class ChickenAvisandoState : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("AvisandoState");
+        Debug.Log("Gallina entra en Avisando  :)");
         avisando = false;
         timer = 0f;
 
@@ -64,7 +64,7 @@ public class ChickenAvisandoState : State
             return typeof(ChickenAlertState);
 
         // Reaccionar también a ruido o visión del jugador
-        if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
+        if ( evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
             return typeof(ChickenAvisandoState);
         return null;
     }

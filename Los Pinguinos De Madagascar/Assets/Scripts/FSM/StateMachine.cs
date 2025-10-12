@@ -36,7 +36,6 @@ public class StateMachine
 
     public void TriggerEvent(StateEvent evt)
     {
-        Debug.Log("FSM.TriggerEvent " + evt + ", currentState: " + currentState.GetType());
 
         if (currentState == null) return;
 
