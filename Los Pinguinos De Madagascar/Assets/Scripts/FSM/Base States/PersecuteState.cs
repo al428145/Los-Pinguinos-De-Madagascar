@@ -30,6 +30,11 @@ public class PersecuteState : State
             if(dirToPlayer != Vector3.zero)
                 owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToPlayer, Time.deltaTime * 5f);
 
+            if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange)
+            {
+                owner.FSM.TriggerEvent(StateEvent.LostPlayer);
+            }
+
             return;
         }
 

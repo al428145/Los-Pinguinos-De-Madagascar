@@ -15,7 +15,8 @@ public class Dog : NPCBase
             typeof(PatrolState),
             typeof(AlertedState),
             typeof(InvestigateState),
-            typeof(PersecuteState)
+            typeof(PersecuteState),
+            typeof(returnPatrolState)
         });
     }
 
