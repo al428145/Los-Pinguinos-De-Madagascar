@@ -1,3 +1,4 @@
+using Controller;
 using System;
 using UnityEngine;
 
@@ -24,6 +25,12 @@ public class EnemyNoiseDetector : MonoBehaviour
 
     private void Awake()
     {
+        if (player == null)
+            player = FindObjectOfType<CreatureMover>()?.transform;
+
+        if (playerNoiseCircle == null)
+            playerNoiseCircle = FindObjectOfType<NoiseCircle>();
+
         npcBase = GetComponent<NPCBase>();
         // Configuramos LineRenderer
         lineRenderer = GetComponent<LineRenderer>();
@@ -48,9 +55,13 @@ public class EnemyNoiseDetector : MonoBehaviour
         if (distance <= combinedRadius)
         {
             detectionTimer += Time.deltaTime;
+
             if (detectionTimer >= detectionDelay)
             {
-                npcBase.HandleNoise(playerCenter);
+                if (npcBase != null)
+                    npcBase.HandleNoise(playerCenter);
+                else
+                    Debug.LogWarning("NPCBase es null, no se puede llamar HandleNoise");
             }
         }
         else
@@ -58,7 +69,7 @@ public class EnemyNoiseDetector : MonoBehaviour
             detectionTimer = 0f;
         }
 
-        // Visualizaci�n del c�rculo del NPC
+        // Visualización del círculo del NPC
         DrawDetectionCircle(detectionRange);
     }
 

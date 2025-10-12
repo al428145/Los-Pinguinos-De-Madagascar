@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class StateMachine
 {
@@ -16,6 +17,7 @@ public class StateMachine
             if (!states.ContainsKey(type))
                 states[type] = (State)Activator.CreateInstance(type);
         }
+
     }
 
     public void SetState(Type stateType)
@@ -34,6 +36,8 @@ public class StateMachine
 
     public void TriggerEvent(StateEvent evt)
     {
+        Debug.Log("FSM.TriggerEvent " + evt + ", currentState: " + currentState.GetType());
+
         if (currentState == null) return;
 
         Type next = currentState.GetNextStateForEvent(evt);

@@ -9,7 +9,10 @@ public class ChickenAlertState : State
 
         if (owner.animator != null)
             owner.animator.SetBool("Alerta", true);
+
+        
     }
+    
 
     public override void Execute(NPCBase owner)
     {
@@ -18,9 +21,9 @@ public class ChickenAlertState : State
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
-        // Podrías hacer que si escucha otro ruido, vuelva a avisar
-        if (evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
+        if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
             return typeof(ChickenAvisandoState);
+
         return null;
     }
 }

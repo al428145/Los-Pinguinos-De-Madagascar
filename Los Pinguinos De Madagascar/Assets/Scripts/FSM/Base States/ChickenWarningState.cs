@@ -8,6 +8,7 @@ public class ChickenAvisandoState : State
 
     public override void Enter(NPCBase owner)
     {
+        Debug.Log("AvisandoState");
         avisando = false;
         timer = 0f;
 
@@ -21,7 +22,17 @@ public class ChickenAvisandoState : State
         // Reproducir animación o sonido de aviso
         if (owner.animator != null)
             owner.animator.SetTrigger("Avisar");
+        var gallina = owner as Gallina;
+        if (gallina != null)
+        {
+            // Detener partículas de sueño
+            if (gallina.particulasDormido != null)
+                gallina.particulasDormido.Stop();
 
+            // Reproducir sonido de alerta
+            if (gallina.sonidoAlerta != null)
+                gallina.sonidoAlerta.Play();
+        }
         // Avisar a los enemigos cercanos
         AvisarOtrosEnemigos(owner);
     }
@@ -38,13 +49,26 @@ public class ChickenAvisandoState : State
         if (timer >= 2f)
             owner.FSM.TriggerEvent(StateEvent.AlertTimeout);
     }
+    public override void Exit(NPCBase owner)
+    {
+        var gallina = owner as Gallina;
+        if (gallina != null && gallina.sonidoAlerta != null)
+            gallina.sonidoAlerta.Stop();
 
+        if (owner.animator != null)
+            owner.animator.SetBool("Alerta", false);
+    }
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.AlertTimeout)
             return typeof(ChickenAlertState);
+
+        // Reaccionar también a ruido o visión del jugador
+        if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
+            return typeof(ChickenAvisandoState);
         return null;
     }
+
 
     private void AvisarOtrosEnemigos(NPCBase owner)
     {
@@ -62,4 +86,5 @@ public class ChickenAvisandoState : State
             }
         }
     }
+
 }
