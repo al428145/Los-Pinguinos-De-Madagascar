@@ -25,7 +25,7 @@ public class Pathfinder : MonoBehaviour
             PathNode currrentNode = openList.OrderBy(n => n.fCost).First();
             PathNode targetNode = new PathNode(target);
 
-            if(currrentNode == targetNode)
+            if(currrentNode.waypoint == targetNode.waypoint)
                 return ReconstructPath(currrentNode);
 
             openList.Remove(currrentNode);
@@ -75,10 +75,6 @@ public class Pathfinder : MonoBehaviour
 
     public static Waypoint FindTheNearestWaypointEnemy(Vector3 enemyPosition, Vector3 playerPosition, List<Waypoint> AllWaypoint)
     {
-        foreach (var w in AllWaypoint)
-        {
-            Debug.Log($"Waypoint: {w.name} | Pos: {w.position} | Dist: {Vector3.Distance(enemyPosition, w.position)}");
-        }
         Waypoint bestWaypoint = null;
         float bestDistance = Mathf.Infinity;
 

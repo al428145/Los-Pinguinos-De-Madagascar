@@ -11,6 +11,7 @@ public class returnPatrolState : State
 
     public override void Enter(NPCBase owner)
     {
+        Debug.Log($"{owner.name} vuelve a patrullar");
         rute = new List<Waypoint>();
         currentWaypointIndex = 0;
         wm = Object.FindObjectOfType<WaypointManager>();

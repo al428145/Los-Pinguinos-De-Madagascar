@@ -13,7 +13,7 @@ public class Waypoint : MonoBehaviour
 
     void Start()
     {
-        position = transform.position - transform.parent.position;
+        position = transform.position; 
     }
 
     void OnDrawGizmos()

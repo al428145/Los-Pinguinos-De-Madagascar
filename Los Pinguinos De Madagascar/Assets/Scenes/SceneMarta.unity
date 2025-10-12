@@ -22876,6 +22876,7 @@ MonoBehaviour:
   PlayerIsBeingSeen: 0
   player: {fileID: 0}
   currentSpeed: 0
+  animator: {fileID: 0}
   puntosDePatrulla: []
 --- !u!1001 &444742677
 PrefabInstance:
@@ -63412,7 +63413,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 62.867046
+      value: 76.48
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -63422,7 +63423,7 @@ PrefabInstance:
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 59.891487
+      value: 58.68
       objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
@@ -63484,6 +63485,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1631142533}
+    - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: tiltDown
+      value: -1.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: viewAngle
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: viewRadius
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_Name
@@ -74898,6 +74914,7 @@ MonoBehaviour:
   PlayerIsBeingSeen: 0
   player: {fileID: 0}
   currentSpeed: 0
+  animator: {fileID: 0}
   puntosDePatrulla: []
 --- !u!114 &1682756585
 MonoBehaviour:
