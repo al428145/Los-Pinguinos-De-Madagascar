@@ -38,7 +38,7 @@ public abstract class NPCBase : MonoBehaviour
         }
     }
 
-    public virtual void MoverHacia(Vector3 objetivo, MovementType moveType = MovementType.Walk)
+    public virtual void MoverHacia(Vector3 objetivo, MovementType moveType)
     {
         float velocidadDeseada = speeds.GetSpeed(moveType);
 
