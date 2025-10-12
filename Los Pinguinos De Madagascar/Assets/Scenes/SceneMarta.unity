@@ -1079,6 +1079,33 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 19557914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &19902627 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+    type: 3}
+  m_PrefabInstance: {fileID: 1398358980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &19902637
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 19902627}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 0.8240019, z: 1.2640266}
+  m_Center: {x: 0, y: 0.45, z: 0.027570724}
 --- !u!1001 &23777705
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63410,6 +63437,11 @@ PrefabInstance:
       propertyPath: playerNoiseCircle
       value: 
       objectReference: {fileID: 1729449363}
+    - target: {fileID: 1784274382449470452, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2315271723213768554, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -63498,17 +63530,22 @@ PrefabInstance:
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: viewRadius
-      value: 50
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: m_Name
-      value: Dog
+      value: Doggy_Jackson
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1784274382449470452, guid: 3b0cf7cf30657e14bb71cef0f0f114cc, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 19902637}
   m_SourcePrefab: {fileID: 100100000, guid: 3b0cf7cf30657e14bb71cef0f0f114cc, type: 3}
 --- !u!1001 &1398467501
 PrefabInstance:
