@@ -87,7 +87,7 @@ public class ChickenAvisandoState : State
             if (npc == null) continue; // Solo NPCs válidos
 
             // Comprobar tag: avisamos solo a "Dog" o "Gallina" si quieres
-            if (col.CompareTag("Dog") || col.CompareTag("Gallina"))
+            if (col.CompareTag("Dog") || col.CompareTag("Gallina") || col.CompareTag("Guard"))
             {
                 // Solo avisar si están patrullando o dormidos
                 string stateName = npc.FSM?.getState()?.GetType().Name ?? "";

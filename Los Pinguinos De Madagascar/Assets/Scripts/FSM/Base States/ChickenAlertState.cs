@@ -8,7 +8,7 @@ public class ChickenAlertState : State
     private AlertPanelController alertPanel;
     private Vector3 centerPosition;
     private float angle; // Ángulo actual en la circunferencia
-    private float radius = 3f; // Radio del círculo
+    private float radius = 1.5f; // Radio del círculo
     private float angularSpeed = 90f; // Grados por segundo
 
     public override void Enter(NPCBase owner)
@@ -23,7 +23,7 @@ public class ChickenAlertState : State
         alertPanel?.ShowAlert();
 
         if (owner.animator != null)
-            owner.animator.SetBool("Alerta", true);
+            owner.animator.SetBool("correr", true);
 
         owner.NoiseDetector?.SetDetectionEnabled(true);
         owner.VisionDetector?.SetDetectionEnabled(true);
@@ -57,7 +57,7 @@ public class ChickenAlertState : State
         owner.transform.position = centerPosition;
 
         if (owner.animator != null)
-            owner.animator.SetBool("Alerta", false);
+            owner.animator.SetBool("correr", false);
 
         owner.NoiseDetector?.SetDetectionEnabled(false);
         owner.VisionDetector?.SetDetectionEnabled(false);
