@@ -15,15 +15,17 @@ public class GameManager : MonoBehaviour
             Instance = this;
         else
             Destroy(gameObject);
+        Time.timeScale = 1f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void WinGame()
     {
-        if (gameEnded) return;
 
         gameEnded = true;
-        Debug.Log("Pantalla de victoria");
-        StopGame();
+        SceneManager.LoadScene("final");
+        
     }
 
     public void LoseGame()
@@ -31,8 +33,9 @@ public class GameManager : MonoBehaviour
         if (gameEnded) return;
 
         gameEnded = true;
-        Debug.Log("Pantalla de derrota");
         StopGame();
+        SceneManager.LoadScene("inicio");
+
     }
 
     private void StopGame()
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
     public void RestartLevel()
     {
         Time.timeScale = 1f;
+        gameEnded = false;
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -51,4 +56,13 @@ public class GameManager : MonoBehaviour
         Debug.Log("Saliendo.");
         Application.Quit();
     }
+    public void inicio()
+    {
+        SceneManager.LoadScene("inicio"); // Usa el nombre exacto de tu escena principal
+    }
+    public void StartGame()
+    {
+        SceneManager.LoadScene("MainScene"); // Usa el nombre exacto de tu escena principal
+    }
+
 }
