@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 
 public class ChickenAvisandoState : State
@@ -8,6 +9,7 @@ public class ChickenAvisandoState : State
 
     public override void Enter(NPCBase owner)
     {
+        Debug.Log("Gallina entra en Avisando  :)");
         avisando = false;
         timer = 0f;
 
@@ -21,7 +23,17 @@ public class ChickenAvisandoState : State
         // Reproducir animación o sonido de aviso
         if (owner.animator != null)
             owner.animator.SetTrigger("Avisar");
+        var gallina = owner as Gallina;
+        if (gallina != null)
+        {
+            // Detener partículas de sueño
+            if (gallina.particulasDormido != null)
+                gallina.particulasDormido.Stop();
 
+            // Reproducir sonido de alerta
+            if (gallina.sonidoAlerta != null)
+                gallina.sonidoAlerta.Play();
+        }
         // Avisar a los enemigos cercanos
         AvisarOtrosEnemigos(owner);
     }
@@ -38,28 +50,58 @@ public class ChickenAvisandoState : State
         if (timer >= 2f)
             owner.FSM.TriggerEvent(StateEvent.AlertTimeout);
     }
+    public override void Exit(NPCBase owner)
+    {
+        var gallina = owner as Gallina;
+        if (gallina != null && gallina.sonidoAlerta != null)
+            gallina.sonidoAlerta.Stop();
 
+        if (owner.animator != null)
+            owner.animator.SetBool("Alerta", false);
+    }
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.AlertTimeout)
             return typeof(ChickenAlertState);
+
+        // Reaccionar también a ruido o visión del jugador
+        if ( evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen)
+            return typeof(ChickenAvisandoState);
         return null;
     }
+
 
     private void AvisarOtrosEnemigos(NPCBase owner)
     {
         Gallina gallina = owner as Gallina;
         if (gallina == null) return;
 
-        Collider[] enemigos = Physics.OverlapSphere(owner.transform.position, gallina.radioAviso, gallina.layerEnemigos);
+        // Detecta todos los colliders en el radio de aviso, sin filtrar por layer
+        Collider[] enemigos = Physics.OverlapSphere(owner.transform.position, gallina.radioAviso);
 
         foreach (Collider col in enemigos)
         {
+            if (col.gameObject == owner.gameObject) continue; // Ignorar a sí mismo
+
             NPCBase npc = col.GetComponent<NPCBase>();
-            if (npc != null && npc != owner)
+            if (npc == null) continue; // Solo NPCs válidos
+
+            // Comprobar tag: avisamos solo a "Dog" o "Gallina" si quieres
+            if (col.CompareTag("Dog") || col.CompareTag("Gallina") || col.CompareTag("Guard"))
             {
-                npc.HandleNoise(owner.LastHeardPosition);
+                // Solo avisar si están patrullando o dormidos
+                string stateName = npc.FSM?.getState()?.GetType().Name ?? "";
+                if (stateName == "PatrolState" || stateName == "ChickenSleepState")
+                {
+                    npc.LastHeardPosition = owner.LastHeardPosition;
+                    npc.HandleNoise(owner.LastHeardPosition);
+
+                    Debug.Log($"{owner.name} avisó a {npc.name} en estado {stateName}");
+                }
             }
         }
     }
+
+
+
 }
