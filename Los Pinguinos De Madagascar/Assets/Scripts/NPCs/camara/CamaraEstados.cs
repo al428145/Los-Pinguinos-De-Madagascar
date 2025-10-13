@@ -35,7 +35,6 @@ public class SecurityCamNPC : NPCBase
 
     public override void HandleVision(Vector3 playerPosition)
     {
-        Debug.Log("📹 Cámara vio al jugador");
         base.HandleVision(playerPosition);
         FSM.TriggerEvent(StateEvent.PlayerSeen);
     }

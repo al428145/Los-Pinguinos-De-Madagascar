@@ -6,7 +6,7 @@ public class AlertedState : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Estado de alerta");
+        Debug.Log("Estado de alerta Perro");
         timer = 0f;
     }
 
