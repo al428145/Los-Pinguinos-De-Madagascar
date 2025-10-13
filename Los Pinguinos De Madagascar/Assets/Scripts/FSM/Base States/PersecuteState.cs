@@ -17,6 +17,7 @@ public class PersecuteState : State
         rute = new List<Waypoint>();
         currentWaypointIndex = 0;
         owner.currentSpeed = owner.speeds.GetSpeed(MovementType.Run);
+        owner.animator?.SetFloat("Speed", owner.currentSpeed);
         recalcTimer = 0f;
         lastPositionPlayer = owner.player.transform.position;
         loseDelay = 2f;

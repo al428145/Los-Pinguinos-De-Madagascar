@@ -28,7 +28,7 @@ public class PatrolState : State
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerSeen)
-            return typeof(InvestigateState);
+            return typeof(AlertedState);
         return null;
     }
 }

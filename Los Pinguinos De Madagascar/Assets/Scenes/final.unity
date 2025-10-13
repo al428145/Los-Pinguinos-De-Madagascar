@@ -3506,21 +3506,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 409957243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9aa3bab11dbb964886615ae59424878, type: 3}
+  m_Script: {fileID: 11500000, guid: e6d50178845eb8142a83a08609f5846f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstTargetX: -250
-  finalTargetX: -310
-  moveSpeed: 20
-  rotationSpeed: 5
+  firstTargetX: -260
+  finalTargetX: -400
+  moveSpeed: 10
+  rotationSpeed: 2
   climbAngle: -25
   climbSpeed: 5
-  panelImage: {fileID: 2025269773}
+  panelImage: {fileID: 0}
   uiText: {fileID: 0}
-  tmpText: {fileID: 1375644682}
-  tmpText2: {fileID: 1310299055}
-  replayButton: {fileID: 1336924113}
-  mainMenuButton: {fileID: 2002583311}
+  tmpText: {fileID: 0}
+  tmpText2: {fileID: 0}
+  replayButton: {fileID: 0}
+  mainMenuButton: {fileID: 0}
   panelFadeDelay: 0.5
   panelFadeDuration: 0.5
   textFadeDelay: 1
@@ -19067,7 +19067,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e835f08fae24a914e8f549b19b0496d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 2025269773}
 --- !u!4 &2030078194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5412017221204367677, guid: abe3d47b915ca924a9e06dd6d3321396,
