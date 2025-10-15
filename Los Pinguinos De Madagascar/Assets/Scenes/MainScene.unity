@@ -449,6 +449,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   canSeePlayer: 0
+  HasSeenPlayer: 0
+  LastSeenPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &7429352
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -54701,6 +54703,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   canSeePlayer: 0
+  HasSeenPlayer: 0
+  LastSeenPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &1120366664
 GameObject:
   m_ObjectHideFlags: 0
@@ -56960,6 +56964,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   canSeePlayer: 0
+  HasSeenPlayer: 0
+  LastSeenPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1163852809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80080,6 +80086,8 @@ MonoBehaviour:
   detectionDelay: 0.5
   showDetectionCircle: 1
   circleSegments: 50
+  HasHeardNoise: 0
+  LastNoisePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1682756586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80112,6 +80120,9 @@ MonoBehaviour:
   layerEnemigos:
     serializedVersion: 2
     m_Bits: 0
+  particulasDormido: {fileID: 0}
+  sonidoAlerta: {fileID: 0}
+  initialPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &1682966899
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101212,7 +101223,7 @@ Transform:
   m_GameObject: {fileID: 2120893720}
   serializedVersion: 2
   m_LocalRotation: {x: 0.06540427, y: -0, z: -0, w: 0.9978588}
-  m_LocalPosition: {x: -66.24, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

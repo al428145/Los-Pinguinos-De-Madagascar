@@ -22,6 +22,7 @@ public class Guard : NPCBase
 
     void Start()
     {
+        SelectNewDestination();
         FSM.SetState(typeof(PatrolState));
     }
 
@@ -36,7 +37,7 @@ public class Guard : NPCBase
     {
         if (puntosDePatrulla.Count == 0) return;
 
-        CurrentDestination = puntosDePatrulla[indiceActual].position;
+        CurrentDestination = puntosDePatrulla[indiceActual].transform.position;
         indiceActual = (indiceActual + 1) % puntosDePatrulla.Count;
     }
 }
