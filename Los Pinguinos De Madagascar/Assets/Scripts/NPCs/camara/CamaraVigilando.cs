@@ -4,7 +4,7 @@ public class CameraVigilando : State
 {
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("?? Cámara vigilando...");
+        Debug.Log("?? Camara vigilando...");
         var cam = owner as SecurityCamNPC;
         if (cam?.alarmSound != null)
             cam.alarmSound.Stop();
@@ -12,7 +12,7 @@ public class CameraVigilando : State
 
     public override void Execute(NPCBase owner)
     {
-        // Aquí no hace falta rotación — otro script se encarga.
+        // Aquï¿½ no hace falta rotaciï¿½n ï¿½ otro script se encarga.
         // Solo se queda vigilando visualmente.
     }
 

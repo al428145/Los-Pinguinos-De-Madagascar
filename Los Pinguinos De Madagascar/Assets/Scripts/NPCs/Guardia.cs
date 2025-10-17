@@ -16,7 +16,8 @@ public class Guard : NPCBase
             typeof(AlertedState),
             typeof(InvestigateState),
             typeof(PersecuteState),
-            typeof(returnPatrolState)
+            typeof(returnPatrolState),
+            typeof(callAlertedState)
         });
     }
 

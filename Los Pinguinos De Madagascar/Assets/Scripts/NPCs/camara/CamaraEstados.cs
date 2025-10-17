@@ -7,6 +7,7 @@ public class SecurityCamNPC : NPCBase
     public AudioSource alarmSound;
     [Header("Aviso a enemigos")]
     public float alertRadius = 50f;
+
     protected override void Awake()
     {
         base.Awake();
@@ -31,10 +32,9 @@ public class SecurityCamNPC : NPCBase
         FSM.Update();
     }
 
-
-
     public override void HandleVision(Vector3 playerPosition)
     {
+        LastHeardPosition = playerPosition;
         base.HandleVision(playerPosition);
         FSM.TriggerEvent(StateEvent.PlayerSeen);
     }
