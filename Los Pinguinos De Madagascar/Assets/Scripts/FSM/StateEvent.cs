@@ -9,5 +9,6 @@ public enum StateEvent
     LostPlayer,
     returnRute,
     PlayerHeard = NoiseHeard, // alias para gallina
-    AlertEnd = AlertTimeout   // alias opcional
+    AlertEnd = AlertTimeout,   // alias opcional
+    SCAlerted
 }

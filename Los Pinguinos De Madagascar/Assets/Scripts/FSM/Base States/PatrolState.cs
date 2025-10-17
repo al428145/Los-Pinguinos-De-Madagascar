@@ -29,6 +29,8 @@ public class PatrolState : State
     {
         if (evt == StateEvent.NoiseHeard || evt == StateEvent.PlayerSeen)
             return typeof(AlertedState);
+        if (evt == StateEvent.SCAlerted)
+            return typeof(callAlertedState);
         return null;
     }
 }
