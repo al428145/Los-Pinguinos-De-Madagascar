@@ -6,6 +6,9 @@ public class InvestigateState : State
     {
         Debug.Log("Pasando a investigar");
         owner.CurrentDestination = owner.LastHeardPosition;
+
+        if (owner is Guard guard && guard.investigateIcon != null)
+            guard.investigateIcon.SetActive(true);
     }
 
     public override void Execute(NPCBase owner)
@@ -21,7 +24,13 @@ public class InvestigateState : State
                 owner.FSM.TriggerEvent(StateEvent.InvestigateDone);
         }
     }
+    public override void Exit(NPCBase owner)
+    {
+        // Desactivar imagen de investigación
+        if (owner is Guard guard && guard.investigateIcon != null)
+            guard.investigateIcon.SetActive(false);
 
+    }
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         if (evt == StateEvent.InvestigateDone)
