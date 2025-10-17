@@ -67,7 +67,7 @@ public class returnPatrolState : State
     {
         if(wm == null)return;
         
-        Waypoint enemyWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, waypoints);
+        Waypoint enemyWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, allWaypoints);
         Waypoint patrolWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, patrolPoints);
         rute = Pathfinder.FindPath(enemyWaypoint, patrolWaypoint);
 
