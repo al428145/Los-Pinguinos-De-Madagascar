@@ -16,7 +16,7 @@ public class CamaraWarning : State
         if (cam?.alarmSound != null)
         {
             if (cam.alarmSound.clip != null && cam.alarmSound.clip.length > 3f)
-                cam.alarmSound.time = 2f;  // Empieza a sonar desde el segundo 3
+                  // Empieza a sonar desde el segundo 3
             cam.alarmSound.Play();
         }
 

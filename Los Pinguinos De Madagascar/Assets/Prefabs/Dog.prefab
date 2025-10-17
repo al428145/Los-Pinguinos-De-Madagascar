@@ -1001,6 +1001,8 @@ MonoBehaviour:
   detectionDelay: 0.5
   showDetectionCircle: 1
   circleSegments: 50
+  HasHeardNoise: 0
+  LastNoisePosition: {x: 0, y: 0, z: 0}
 --- !u!114 &2574781832949345164
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,8 +1029,11 @@ MonoBehaviour:
   PlayerIsBeingSeen: 0
   player: {fileID: 0}
   currentSpeed: 0
+  animator: {fileID: 0}
   zonaPatrulla: {fileID: 0}
   waypointsZonePatrol: []
+  alertSound: {fileID: 3134905925185581740}
+  alertVolume: 0.5
 --- !u!114 &2806458839888155854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1052,6 +1057,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   canSeePlayer: 0
+  HasSeenPlayer: 0
+  LastSeenPosition: {x: 0, y: 0, z: 0}
 --- !u!82 &3134905925185581740
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1062,8 +1069,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: 73657917f3a50ff44ad4e5fa4547e9ba, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
