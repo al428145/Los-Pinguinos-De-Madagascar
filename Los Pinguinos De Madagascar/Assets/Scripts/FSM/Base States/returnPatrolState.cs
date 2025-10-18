@@ -9,6 +9,7 @@ public class returnPatrolState : State
     private WaypointManager wm;    
     private List<Waypoint> patrolPoints;
     private List<Waypoint> allWaypoints;
+    private Waypoint patrolWaypoint;
 
     public override void Enter(NPCBase owner)
     {
@@ -61,6 +62,15 @@ public class returnPatrolState : State
                 owner.FSM.TriggerEvent(StateEvent.returnRute);
             }
         }
+
+        if(rute == null || rute.Count == 0)
+        {
+            Vector3 dirToWaypoint = (patrolWaypoint.position - owner.transform.position).normalized;
+            owner.transform.position += dirToWaypoint * owner.currentSpeed * Time.deltaTime;
+
+            if (dirToWaypoint != Vector3.zero)
+                owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToWaypoint, Time.deltaTime * 5f);
+        }
     }
 
     private void calculateRute(NPCBase owner, List<Waypoint> patrolPoints)
@@ -68,7 +78,7 @@ public class returnPatrolState : State
         if(wm == null)return;
         
         Waypoint enemyWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, allWaypoints);
-        Waypoint patrolWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, patrolPoints);
+        patrolWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, patrolPoints);
         rute = Pathfinder.FindPath(enemyWaypoint, patrolWaypoint);
 
         currentWaypointIndex = 0;
