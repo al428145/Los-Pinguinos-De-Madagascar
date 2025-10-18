@@ -10,5 +10,7 @@ public enum StateEvent
     returnRute,
     PlayerHeard = NoiseHeard, // alias para gallina
     AlertEnd = AlertTimeout,   // alias opcional
-    SCAlerted
+    SCAlerted,
+    playerFindInRute,
+    investigationFinished
 }
