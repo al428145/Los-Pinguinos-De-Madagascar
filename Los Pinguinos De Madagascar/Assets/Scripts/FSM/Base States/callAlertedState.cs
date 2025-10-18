@@ -22,52 +22,36 @@ public class callAlertedState : State
     {
         if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange)
         {
-            owner.FSM.TriggerEvent(StateEvent.playerFindInRute);
-            return;
+            owner.FSM.TriggerEvent(StateEvent.PlayerSeen);
         }
 
-        if(rute.Count > 0)
+        Waypoint target = rute[currentWaypointIndex];
+        owner.MoverHacia(target.position, MovementType.Walk);
+
+        Vector3 direccionAlDestino = target.position - owner.transform.position;
+        direccionAlDestino.y = 0;
+        if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima)
         {
-            Waypoint target = rute[currentWaypointIndex];
-            owner.MoverHacia(target.position, MovementType.Walk);
+            currentWaypointIndex++;
 
-            Vector3 direccionAlDestino = target.position - owner.transform.position;
-            direccionAlDestino.y = 0;
-            if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima)
+            if (currentWaypointIndex >= rute.Count)
             {
-                currentWaypointIndex++;
-
-                if (currentWaypointIndex >= rute.Count)
-                {
-                    rute = new List<Waypoint>();
-                }
-            }
-
-            if(rute == null || rute.Count == 0)
-            {
-                Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position).normalized;
-                owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
-
-                if (dirToPlayer != Vector3.zero)
-                    owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToPlayer, Time.deltaTime * 5f);
-            }
-
-            Vector3 direccion = owner.transform.position - lastPositionPlayer;
-            direccion.y = 0;
-            if(direccion.sqrMagnitude < owner.distanciaMinima)
-            {
-                owner.FSM.TriggerEvent(StateEvent.investigationFinished);
+                owner.MoverHacia(lastPositionPlayer, MovementType.Walk);
             }
         }
-        
+
+        if(owner.transform.position == lastPositionPlayer)
+        {
+            owner.FSM.TriggerEvent(StateEvent.InvestigateDone);
+        }
     }
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
-        if (evt==StateEvent.playerFindInRute)
-            return typeof(PersecuteState);
-        if (evt==StateEvent.investigationFinished)
+        if (evt==StateEvent.PlayerSeen)
             return typeof(returnPatrolState);
+        if (evt==StateEvent.InvestigateDone)
+            return typeof(PersecuteState);
         return null;
     }
 
@@ -81,6 +65,5 @@ public class callAlertedState : State
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
 
         currentWaypointIndex = 0;
-        Debug.Log(rute.Count);
     }
 }
