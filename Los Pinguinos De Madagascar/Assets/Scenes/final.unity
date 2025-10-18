@@ -14,19 +14,19 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_Fog: 1
+  m_FogColor: {r: 0.5698112, g: 0.51120657, b: 0.40316832, a: 1}
   m_FogMode: 3
-  m_FogDensity: 0.01
+  m_FogDensity: 0.005
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 2.35
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 0.04905659, g: 0.047297955, b: 0.047297955, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 51b74d7bad397457d883c5940f7664d8, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -3515,12 +3515,12 @@ MonoBehaviour:
   rotationSpeed: 2
   climbAngle: -25
   climbSpeed: 5
-  panelImage: {fileID: 0}
+  panelImage: {fileID: 2025269773}
   uiText: {fileID: 0}
-  tmpText: {fileID: 0}
-  tmpText2: {fileID: 0}
-  replayButton: {fileID: 0}
-  mainMenuButton: {fileID: 0}
+  tmpText: {fileID: 1375644682}
+  tmpText2: {fileID: 1310299055}
+  replayButton: {fileID: 2002583311}
+  mainMenuButton: {fileID: 1336924113}
   panelFadeDelay: 0.5
   panelFadeDuration: 0.5
   textFadeDelay: 1
@@ -11428,6 +11428,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abe40741abd3bc64aac56a7166e0f02c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuMusic: {fileID: 8300000, guid: 60f408a7d7ad08e4ea6a9f8832edb1ec, type: 3}
+  menuMusicVolume: 0.5
+  mainSceneMusic: {fileID: 8300000, guid: 9e73042c3016407448c7126d51ca7edc, type: 3}
+  mainMusicVolume: 0.5
+  rainClip: {fileID: 8300000, guid: 873c62e2e183db94ba05ab4149581c0f, type: 3}
+  rainVolume: 0.2
 --- !u!4 &1334004438 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5412017221204367677, guid: abe3d47b915ca924a9e06dd6d3321396,
@@ -11632,7 +11638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0786babe7430639458b62866101649d6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5862036cc0cd86242ac5565355320e42, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18705,7 +18711,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b7f4978db1745cb41b85f0df4e5d70f4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e1f1d0629be54e442bc75c96c33de4b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

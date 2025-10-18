@@ -47,7 +47,7 @@ public abstract class NPCBase : MonoBehaviour
         float distancia = direccion.magnitude;
         direccion.Normalize();
 
-        currentSpeed = speeds.idle;
+        //currentSpeed = speeds.idle;
 
         if (distancia > distanciaMinima)
         {

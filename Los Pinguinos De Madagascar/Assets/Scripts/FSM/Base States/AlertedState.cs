@@ -8,6 +8,15 @@ public class AlertedState : State
     {
         Debug.Log("Estado de alerta Perro");
         timer = 0f;
+
+        if (owner is Guard guard)
+            guard.PlayAlertSound();
+
+        if (owner is Dog perro)
+            perro.PlayAlertSound();
+
+        if (owner is Guard guardia && guardia.investigateIcon != null)
+            guardia.investigateIcon.SetActive(true);
     }
 
     public override void Execute(NPCBase owner)
@@ -35,6 +44,13 @@ public class AlertedState : State
     {
         owner.NoiseDetector?.SetDetectionEnabled(true);
         owner.VisionDetector?.SetDetectionEnabled(true);
+        if (owner is Guard guard)
+            guard.StopAlertSound();
+        if (owner is Dog perro)
+            perro.StopAlertSound();
+
+        if (owner is Guard guardia && guardia.investigateIcon != null)
+            guardia.investigateIcon.SetActive(false);
     }
 
     public override System.Type GetNextStateForEvent(StateEvent evt)

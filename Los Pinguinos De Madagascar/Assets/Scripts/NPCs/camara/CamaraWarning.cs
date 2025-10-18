@@ -8,7 +8,7 @@ public class CamaraWarning : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log(" Cámara ALERTA ");
+        Debug.Log(" Camara ALERTA ");
         timer = 0f;
 
         var cam = owner as SecurityCamNPC;
@@ -16,10 +16,9 @@ public class CamaraWarning : State
         if (cam?.alarmSound != null)
         {
             if (cam.alarmSound.clip != null && cam.alarmSound.clip.length > 3f)
-                cam.alarmSound.time = 2f;  // Empieza a sonar desde el segundo 3
+                  // Empieza a sonar desde el segundo 3
             cam.alarmSound.Play();
         }
-
 
         if (alertPanel == null)
             alertPanel = GameObject.FindObjectOfType<AlertPanelController>();
@@ -75,15 +74,15 @@ public class CamaraWarning : State
             if (npc == null) continue;
 
             // Solo avisar a enemigos relevantes
-            if (col.CompareTag("Gallina") || col.CompareTag("Dog") || col.CompareTag("Guard") )
+            if (col.CompareTag("Dog") || col.CompareTag("Guard") )
             {
                 string stateName = npc.FSM?.getState()?.GetType().Name ?? "";
 
-                // Solo avisar si están en modo tranquilo
-                if (stateName == "PatrolState" || stateName == "ChickenSleepState" || stateName == "CameraVigilando")
+                // Solo avisar si estan en modo tranquilo
+                if (stateName == "PatrolState")
                 {
                     npc.LastHeardPosition = owner.transform.position;
-                    npc.HandleNoise(owner.transform.position);
+                    npc.FSM.TriggerEvent(StateEvent.SCAlerted);
                     Debug.Log($"📢 {owner.name} avisó a {npc.name} ({stateName})");
                 }
             }

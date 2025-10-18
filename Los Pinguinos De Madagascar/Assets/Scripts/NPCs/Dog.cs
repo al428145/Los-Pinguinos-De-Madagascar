@@ -6,6 +6,9 @@ public class Dog : NPCBase
     [Header("Zona de Patrulla")]
     public BoxCollider zonaPatrulla;
     public List<Waypoint> waypointsZonePatrol;
+    [Header("?? Sonido de alerta")]
+    public AudioSource alertSound;        // AudioSource con sonido del perro
+    [Range(0f, 1f)] public float alertVolume = 0.5f;
 
     protected override void Awake()
     {
@@ -16,8 +19,17 @@ public class Dog : NPCBase
             typeof(AlertedState),
             typeof(InvestigateState),
             typeof(PersecuteState),
-            typeof(returnPatrolState)
+            typeof(returnPatrolState),
+            typeof(callAlertedState)
         });
+
+        if (alertSound != null)
+        {
+            alertSound.playOnAwake = false;
+            alertSound.loop = false;       // o true si quieres que ladre continuamente
+            alertSound.volume = alertVolume;
+            alertSound.spatialBlend = 0f; // 0 = 2D, para volumen constante
+        }
     }
 
     void Start()
@@ -55,5 +67,20 @@ public class Dog : NPCBase
         Vector3 punto = centro + new Vector3(x, 0f, z);
 
         CurrentDestination = new Vector3(punto.x, transform.position.y, punto.z);
+    }
+    public void PlayAlertSound()
+    {
+        if (alertSound != null)
+        {
+            alertSound.Stop();               // reinicia el sonido
+            alertSound.volume = alertVolume; // aplica volumen del inspector
+            alertSound.Play();
+        }
+    }
+
+    public void StopAlertSound()
+    {
+        if (alertSound != null && alertSound.isPlaying)
+            alertSound.Stop();
     }
 }
