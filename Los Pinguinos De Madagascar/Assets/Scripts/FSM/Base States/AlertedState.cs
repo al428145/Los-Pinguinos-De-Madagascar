@@ -14,6 +14,9 @@ public class AlertedState : State
 
         if (owner is Dog perro)
             perro.PlayAlertSound();
+
+        if (owner is Guard guardia && guardia.investigateIcon != null)
+            guardia.investigateIcon.SetActive(true);
     }
 
     public override void Execute(NPCBase owner)
@@ -45,6 +48,9 @@ public class AlertedState : State
             guard.StopAlertSound();
         if (owner is Dog perro)
             perro.StopAlertSound();
+
+        if (owner is Guard guardia && guardia.investigateIcon != null)
+            guardia.investigateIcon.SetActive(false);
     }
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
