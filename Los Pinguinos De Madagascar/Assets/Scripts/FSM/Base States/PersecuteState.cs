@@ -30,7 +30,7 @@ public class PersecuteState : State
         Vector3 distToPlayer = owner.transform.position - owner.player.transform.position;
         distToPlayer.y = 0;
 
-        // Si esta muy cerca del jugador, ignora la ruta y muevete directo
+        // Si está muy cerca del jugador, ignora la ruta y muévete directo
         if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 5f)
         {
             recalcTimer += Time.deltaTime;
@@ -92,7 +92,7 @@ public class PersecuteState : State
         // Elimina el waypoint actual (ya alcanzado)
         rute.RemoveAt(0);
 
-        // Devuelve si aun quedan mas puntos
+        // Devuelve si aún quedan más puntos
         return rute.Count > 0;
     }
 
