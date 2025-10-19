@@ -49691,11 +49691,6 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7490953376921949785, guid: 3db4795cede81cb4688ba6b988f6f248,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 7490953376921949785, guid: 3db4795cede81cb4688ba6b988f6f248,
-        type: 3}
       propertyPath: m_LocalPosition.x
       value: 68
       objectReference: {fileID: 0}
@@ -49748,11 +49743,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Hangar_4
-      objectReference: {fileID: 0}
-    - target: {fileID: 8492951839083704823, guid: 3db4795cede81cb4688ba6b988f6f248,
-        type: 3}
-      propertyPath: m_Layer
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -26,6 +26,7 @@ public class AlertedState : State
 
         if (timer >= 0.5f)
         {
+
             if (owner.PlayerStillInRange || owner.PlayerIsBeingSeen)
             {
                 owner.FSM.TriggerEvent(StateEvent.AlertTimeout);

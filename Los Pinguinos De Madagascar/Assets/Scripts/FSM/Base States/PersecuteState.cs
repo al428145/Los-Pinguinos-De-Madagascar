@@ -27,11 +27,15 @@ public class PersecuteState : State
 
     public override void Execute(NPCBase owner)
     {
+
+
         Vector3 distToPlayer = owner.transform.position - owner.player.transform.position;
         distToPlayer.y = 0;
 
+
+
         // Si está muy cerca del jugador, ignora la ruta y muévete directo
-        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 5f)
+        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 40f)
         {
             recalcTimer += Time.deltaTime;
 
@@ -52,12 +56,6 @@ public class PersecuteState : State
             HandleLostPlayer(owner);
             return;
         }
-
-        if(distToPlayer.sqrMagnitude >= 40f && rute.Count == 0)
-        {
-            owner.MoverHacia(owner.player.transform.position, MovementType.Run);
-        }
-
         // Actualiza temporizador para recalcular ruta
         recalcTimer += Time.deltaTime;
         if (recalcTimer > 3f || Vector3.Distance(owner.player.transform.position, lastPositionPlayer) > 2f)
