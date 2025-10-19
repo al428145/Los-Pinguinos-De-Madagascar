@@ -997,7 +997,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   playerNoiseCircle: {fileID: 0}
-  detectionRange: 3
+  detectionRange: 6
   detectionDelay: 0.5
   showDetectionCircle: 1
   circleSegments: 50
@@ -1020,7 +1020,7 @@ MonoBehaviour:
   speeds:
     idle: 0
     walk: 2
-    run: 3
+    run: 6
   NoiseDetector: {fileID: 0}
   VisionDetector: {fileID: 0}
   CurrentDestination: {x: 0, y: 0, z: 0}
@@ -1046,7 +1046,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c09650e7496fc342944cef921aa19a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewRadius: 10
+  viewRadius: 5
   viewAngle: 80
   tiltDown: 0
   player: {fileID: 0}
