@@ -69,6 +69,15 @@ public class MainCamera : MonoBehaviour
             center + right - up
         };
 
+        foreach (Vector3 point in collisionPoints)
+        {
+            if (Physics.Raycast(point, direction, out RaycastHit hit, maxDistance))
+            {
+                float hitDist = (hit.point - follow.position).magnitude;
+                if (hitDist < distance) distance = hitDist;
+            }
+        }
+
         transform.position = follow.position + direction * distance;
         transform.rotation = Quaternion.LookRotation(cameraTarget - transform.position);
     }
