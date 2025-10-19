@@ -11,7 +11,6 @@ public class Pathfinder : MonoBehaviour
         List<PathNode> openList = new List<PathNode>();
         List<Waypoint> closeList = new List<Waypoint>();
 
-
         //Inicial mode
         PathNode startNode = new PathNode(origin);
         startNode.gCost = 0;
@@ -19,9 +18,8 @@ public class Pathfinder : MonoBehaviour
         startNode.fCost = startNode.gCost + startNode.hCost;
         startNode.parent = null;
         openList.Add(startNode);
-        LayerMask wallLayer = LayerMask.GetMask("Obstacle");
 
-        while (openList.Count > 0)
+        while(openList.Count > 0)
         {
             //Select the node with less fCost
             PathNode currrentNode = openList.OrderBy(n => n.fCost).First();
@@ -36,12 +34,7 @@ public class Pathfinder : MonoBehaviour
             //Explore neighbors
             foreach(Waypoint neighbor in currrentNode.waypoint.neighbors)
             {
-                // Ignorar si está dentro de un muro
-                if (Physics.Linecast(currrentNode.waypoint.position, neighbor.position, wallLayer))
-                    continue;
-
-                
-                if (closeList.Contains(neighbor))
+                if(closeList.Contains(neighbor))
                     continue;
                 
                 float tentativeG = currrentNode.gCost + Vector3.Distance(currrentNode.waypoint.position, neighbor.position);
