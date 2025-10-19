@@ -1023,7 +1023,7 @@ MonoBehaviour:
   speeds:
     idle: 0
     walk: 2
-    run: 3
+    run: 4
   NoiseDetector: {fileID: 0}
   VisionDetector: {fileID: 0}
   CurrentDestination: {x: 0, y: 0, z: 0}
