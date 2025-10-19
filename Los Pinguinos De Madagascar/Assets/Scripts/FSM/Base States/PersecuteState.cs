@@ -53,6 +53,11 @@ public class PersecuteState : State
             return;
         }
 
+        if(distToPlayer.sqrMagnitude >= 40f && rute.Count == 0)
+        {
+            owner.MoverHacia(owner.player.transform.position, MovementType.Run);
+        }
+
         // Actualiza temporizador para recalcular ruta
         recalcTimer += Time.deltaTime;
         if (recalcTimer > 3f || Vector3.Distance(owner.player.transform.position, lastPositionPlayer) > 2f)
