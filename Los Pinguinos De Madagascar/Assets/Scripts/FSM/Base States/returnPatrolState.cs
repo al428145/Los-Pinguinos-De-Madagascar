@@ -9,6 +9,7 @@ public class returnPatrolState : State
     private WaypointManager wm;    
     private List<Waypoint> patrolPoints;
     private List<Waypoint> allWaypoints;
+    private Waypoint patrolWaypoint;
 
     public override void Enter(NPCBase owner)
     {
@@ -77,7 +78,7 @@ public class returnPatrolState : State
         if(wm == null)return;
         
         Waypoint enemyWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, allWaypoints);
-        Waypoint patrolWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, patrolPoints);
+        patrolWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.transform.position, patrolPoints);
         rute = Pathfinder.FindPath(enemyWaypoint, patrolWaypoint);
 
         currentWaypointIndex = 0;
