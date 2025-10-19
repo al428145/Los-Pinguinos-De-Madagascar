@@ -1,16 +1,29 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class MenuController : MonoBehaviour
 {
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
     public void StartGame()
     {
-        SceneManager.LoadScene("MainScene"); // Usa el nombre exacto de tu escena principal
+        GameManager.Instance?.StartGame();
     }
 
-    public void ExitGame()
+    public void RestartGame()
     {
-        Application.Quit(); // (Opcional) para salir del juego
-        Debug.Log("El juego se cerraría aquí (solo funciona en build).");
+        GameManager.Instance?.RestartLevel();
+    }
+
+    public void GoToMainMenu()
+    {
+        GameManager.Instance?.inicio();
+    }
+
+    public void QuitGame()
+    {
+        GameManager.Instance?.QuitGame();
     }
 }
