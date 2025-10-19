@@ -23,17 +23,17 @@ public class AlertedState : State
     {
         timer += Time.deltaTime;
         owner.LookAtNoise(owner.LastHeardPosition);
-
-        // Si mientras está alertado VE al jugador, que pase a persecución
-        if (owner.PlayerIsBeingSeen)
+        if (timer >= 1f)
+        {
+            // Si mientras está alertado VE al jugador, que pase a persecución
+            if (owner.PlayerIsBeingSeen)
         {
             owner.FSM.TriggerEvent(StateEvent.PlayerSeen);
             return; // Salimos para que no ejecute lo de abajo
         }
 
         // Si el tiempo de alerta se acaba Y NO VIO AL JUGADOR, va a investigar
-        if (timer >= 1f)
-        {
+        
             owner.FSM.TriggerEvent(StateEvent.AlertTimeout);
         }
     }
