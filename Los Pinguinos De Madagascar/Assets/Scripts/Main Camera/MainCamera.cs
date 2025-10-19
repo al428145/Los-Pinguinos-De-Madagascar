@@ -57,27 +57,6 @@ public class MainCamera : MonoBehaviour
         Vector3 cameraTarget = follow.position + lookOffset;
         float distance = maxDistance;
 
-        Vector3 center = cameraTarget + direction * (camera.nearClipPlane + 0.2f);
-        Vector3 right = transform.right * nearPlaneSize.x;
-        Vector3 up = transform.up * nearPlaneSize.y;
-
-        Vector3[] collisionPoints = new Vector3[]
-        {
-            center - right + up,
-            center + right + up,
-            center - right - up,
-            center + right - up
-        };
-
-        foreach (Vector3 point in collisionPoints)
-        {
-            if (Physics.Raycast(point, direction, out RaycastHit hit, maxDistance))
-            {
-                float hitDist = (hit.point - follow.position).magnitude;
-                if (hitDist < distance) distance = hitDist;
-            }
-        }
-
         transform.position = follow.position + direction * distance;
         transform.rotation = Quaternion.LookRotation(cameraTarget - transform.position);
     }
