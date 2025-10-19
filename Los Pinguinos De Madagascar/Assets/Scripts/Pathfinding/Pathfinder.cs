@@ -73,50 +73,47 @@ public class Pathfinder : MonoBehaviour
         return path;
     }
 
-    public static Waypoint FindTheNearestWaypointEnemy(Vector3 enemyPosition, Vector3 playerPosition, List<Waypoint> allWaypoints, float angleThresholdDeg = 60f) // puedes ajustar el ángulo
+    public static Waypoint FindTheNearestWaypointEnemy(Vector3 enemyPosition, Vector3 playerPosition, List<Waypoint> allWaypoints, float angleThresholdDeg = 60f)
     {
         if (allWaypoints == null || allWaypoints.Count == 0) return null;
 
         Vector3 dirToPlayer = (playerPosition - enemyPosition).normalized;
-        float minDot = Mathf.Cos(angleThresholdDeg * Mathf.Deg2Rad); // dot minimo para estar dentro del cono
+        float minDot = Mathf.Cos(angleThresholdDeg * Mathf.Deg2Rad);
 
         Waypoint best = null;
         float bestDistSqr = float.PositiveInfinity;
 
-        // 1) Primer pase: filtrar por estar "delante" (dot >= minDot) y escoger el mas cercano
         foreach (var wp in allWaypoints)
         {
             Vector3 toWp = wp.position - enemyPosition;
             float distSqr = toWp.sqrMagnitude;
-            if (distSqr == 0f) // caso raro: el waypoint esta encima del NPC
-            {
-                return wp;
-            }
+            if (distSqr == 0f) return wp;
 
-            if (Physics.Linecast(enemyPosition + Vector3.up * 0.5f, wp.position + Vector3.up * 0.5f, LayerMask.GetMask("Obstacles")))
-                continue; // no hay visibilidad directa lo descartamos
+            // Nuevo: comprobamos visibilidad
+            if (Physics.Raycast(enemyPosition + Vector3.up * 0.5f, toWp.normalized, out RaycastHit hit, Mathf.Sqrt(distSqr)))
+            {
+                // Si golpea algo que no es suelo ni el waypoint, lo descartamos
+                if (!hit.collider.CompareTag("Ground") && !hit.collider.CompareTag("Waypoint"))
+                    continue;
+            }
 
             Vector3 dirWp = toWp.normalized;
             float dot = Vector3.Dot(dirToPlayer, dirWp);
 
-            if (dot >= minDot) // esta dentro del cono frontal
+            if (dot >= minDot && distSqr < bestDistSqr)
             {
-                if (distSqr < bestDistSqr)
-                {
-                    bestDistSqr = distSqr;
-                    best = wp;
-                }
+                bestDistSqr = distSqr;
+                best = wp;
             }
         }
 
-        // 2) Si no hay ninguno en el cono, fallback: el más cercano absoluto
+        // Fallback al más cercano si no hay ninguno visible
         if (best == null)
-        {
             best = allWaypoints.OrderBy(w => (w.position - enemyPosition).sqrMagnitude).FirstOrDefault();
-        }
 
         return best;
     }
+
 
 
     public static Waypoint FindNearestWaypointPlayer(Vector3 playerPos, List<Waypoint> allWaypoints)

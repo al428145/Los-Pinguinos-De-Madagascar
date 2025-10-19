@@ -12,7 +12,7 @@ public class WaypointManager : MonoBehaviour
     [Header("Heigh of the raycast")]
     public float rayOffsetY = 0.25f;
 
-    void Start()
+    void Awake()
     {
         // 1. Encuentra todos los waypoints en la escena
         waypoints.AddRange(FindObjectsOfType<Waypoint>());

@@ -36,19 +36,14 @@ public class callAlertedState : State
 
     public override void Execute(NPCBase owner)
     {
-        if (timer < 3f)
-        {
-            timer += Time.deltaTime;
-        }
-        else if (timer >= 3f)
-        {
+        if (rute == null || rute.Count == 0)
             calculateRute(owner);
-            timer = -999999999;
-        }
+
 
         if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange)
         {
             owner.FSM.TriggerEvent(StateEvent.playerFindInRute);
+            rute = null;
             return;
         }
 
@@ -70,7 +65,7 @@ public class callAlertedState : State
         
         else if(rute == null || rute.Count == 0)
         {
-            Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position);
+            Vector3 dirToPlayer = lastPositionPlayer - owner.transform.position;
 
             if(dirToPlayer.sqrMagnitude > owner.distanciaMinima * owner.distanciaMinima)
             {
@@ -80,6 +75,7 @@ public class callAlertedState : State
             }
             else
             {
+                rute = null;
                 owner.FSM.TriggerEvent(StateEvent.investigationFinished);
             }
         }
