@@ -17,7 +17,7 @@ public class PlayerCapture : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Comprueba si el objeto con el que chocamos tiene el tag "Enemy"
-        if (other.CompareTag("Enemy") && !yaCapturado)
+        if ((other.CompareTag("Dog")|| other.CompareTag("Guard")) && !yaCapturado)
         {
             IniciarCaptura();
         }
