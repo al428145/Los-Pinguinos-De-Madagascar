@@ -29,10 +29,9 @@ public class PersecuteState : State
     {
         Vector3 distToPlayer = owner.transform.position - owner.player.transform.position;
         distToPlayer.y = 0;
-        Debug.Log(distToPlayer.sqrMagnitude);
 
         // Si está muy cerca del jugador, ignora la ruta y muévete directo
-        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 40f)
+        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 5f)
         {
             recalcTimer += Time.deltaTime;
 
