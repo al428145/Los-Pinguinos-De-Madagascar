@@ -78,25 +78,28 @@ public class Pathfinder : MonoBehaviour
         if (allWaypoints == null || allWaypoints.Count == 0) return null;
 
         Vector3 dirToPlayer = (playerPosition - enemyPosition).normalized;
-        float minDot = Mathf.Cos(angleThresholdDeg * Mathf.Deg2Rad); // dot mínimo para estar dentro del cono
+        float minDot = Mathf.Cos(angleThresholdDeg * Mathf.Deg2Rad); // dot minimo para estar dentro del cono
 
         Waypoint best = null;
         float bestDistSqr = float.PositiveInfinity;
 
-        // 1) Primer pase: filtrar por estar "delante" (dot >= minDot) y escoger el más cercano
+        // 1) Primer pase: filtrar por estar "delante" (dot >= minDot) y escoger el mas cercano
         foreach (var wp in allWaypoints)
         {
             Vector3 toWp = wp.position - enemyPosition;
             float distSqr = toWp.sqrMagnitude;
-            if (distSqr == 0f) // caso raro: el waypoint está encima del NPC
+            if (distSqr == 0f) // caso raro: el waypoint esta encima del NPC
             {
                 return wp;
             }
 
+            if (Physics.Linecast(enemyPosition + Vector3.up * 0.5f, wp.position + Vector3.up * 0.5f, LayerMask.GetMask("Obstacles")))
+                continue; // no hay visibilidad directa lo descartamos
+
             Vector3 dirWp = toWp.normalized;
             float dot = Vector3.Dot(dirToPlayer, dirWp);
 
-            if (dot >= minDot) // está dentro del cono frontal
+            if (dot >= minDot) // esta dentro del cono frontal
             {
                 if (distSqr < bestDistSqr)
                 {
