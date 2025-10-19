@@ -32510,6 +32510,16 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1631142533}
+    - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: targetMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: obstructionMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3755855717322859988, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -32564,6 +32574,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Surveillance Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 5367631062115503988, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: alertRadius
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8051894795600161108, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
@@ -90621,6 +90636,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Guard (23)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7587113417311921644, guid: 2b33a7eea3bb2a74fa6a392186870736,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
