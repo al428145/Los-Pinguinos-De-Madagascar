@@ -63920,6 +63920,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Doggy_Jackson
       objectReference: {fileID: 0}
+    - target: {fileID: 5902342478587256338, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1784274382449470452, guid: 3b0cf7cf30657e14bb71cef0f0f114cc, type: 3}
     m_RemovedGameObjects: []
