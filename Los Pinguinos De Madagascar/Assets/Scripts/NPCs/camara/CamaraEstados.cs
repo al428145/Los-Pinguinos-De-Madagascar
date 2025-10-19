@@ -41,6 +41,10 @@ public class SecurityCamNPC : NPCBase
     public override void HandleVision(Vector3 playerPosition)
     {
         base.HandleVision(playerPosition);
+
+        if (FSM.getState() is CamaraWarning)
+            return;
+            
         FSM.TriggerEvent(StateEvent.PlayerSeen);
     }
 
