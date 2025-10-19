@@ -41,6 +41,9 @@ public class planeAnimation : MonoBehaviour
         SetAlpha(tmpText, 0f);
         SetAlpha(tmpText2, 0f);
 
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         // Ocultar botones al inicio
         if (replayButton != null) replayButton.gameObject.SetActive(false);
         if (mainMenuButton != null) mainMenuButton.gameObject.SetActive(false);
