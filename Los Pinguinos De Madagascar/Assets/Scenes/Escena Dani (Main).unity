@@ -17476,6 +17476,16 @@ PrefabInstance:
       propertyPath: distanciaMinima
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.data[0]
+      value: 
+      objectReference: {fileID: 1778296864}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player
@@ -28947,11 +28957,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 36537369481006781, guid: 7cedff2336525164686b1deccacacf07,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1976147808966387839, guid: 7cedff2336525164686b1deccacacf07,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53104,12 +53109,12 @@ PrefabInstance:
         type: 3}
       propertyPath: waypointsZonePatrol.Array.data[0]
       value: 
-      objectReference: {fileID: 1908213449}
+      objectReference: {fileID: 1368667188}
     - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: waypointsZonePatrol.Array.data[1]
       value: 
-      objectReference: {fileID: 1368667188}
+      objectReference: {fileID: 2047898628}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player
@@ -65505,6 +65510,16 @@ PrefabInstance:
       propertyPath: waypointsZonePatrol.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.data[0]
+      value: 
+      objectReference: {fileID: 607078698}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.data[1]
+      value: 
+      objectReference: {fileID: 714963361}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player
@@ -106262,6 +106277,16 @@ PrefabInstance:
       propertyPath: distanciaMinima
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2574781832949345164, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
+        type: 3}
+      propertyPath: waypointsZonePatrol.Array.data[0]
+      value: 
+      objectReference: {fileID: 1778296864}
     - target: {fileID: 2806458839888155854, guid: 3b0cf7cf30657e14bb71cef0f0f114cc,
         type: 3}
       propertyPath: player
