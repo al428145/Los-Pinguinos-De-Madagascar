@@ -10326,6 +10326,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 180361142}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &181489510 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6553936867123203753, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1804866680}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &181759185
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -34020,6 +34026,12 @@ MonoBehaviour:
   neighbors: []
   position: {x: 0, y: 0, z: 0}
   connectionRadius: 20
+--- !u!1 &582254154 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6553936867123203753, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275358136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &582411357
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70580,12 +70592,12 @@ PrefabInstance:
         type: 3}
       propertyPath: alertSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1936434022}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: investigateIcon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 582254154}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: puntosDePatrulla.Array.size
@@ -87129,12 +87141,12 @@ PrefabInstance:
         type: 3}
       propertyPath: alertSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1623802492}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: investigateIcon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1867507596}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: puntosDePatrulla.Array.size
@@ -89190,6 +89202,12 @@ MonoBehaviour:
   neighbors: []
   position: {x: 0, y: 0, z: 0}
   connectionRadius: 15
+--- !u!82 &1623802492 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -1438628644784416624, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589513381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1624272377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -99333,16 +99351,21 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1631142533}
+    - target: {fileID: 732239672715547330, guid: 2b33a7eea3bb2a74fa6a392186870736,
+        type: 3}
+      propertyPath: canSeePlayer
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: alertSound
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1804866682}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: investigateIcon
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 181489510}
     - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
         type: 3}
       propertyPath: puntosDePatrulla.Array.size
@@ -99411,6 +99434,12 @@ PrefabInstance:
 --- !u!4 &1804866681 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1804866680}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1804866682 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -1438628644784416624, guid: 2b33a7eea3bb2a74fa6a392186870736,
     type: 3}
   m_PrefabInstance: {fileID: 1804866680}
   m_PrefabAsset: {fileID: 0}
@@ -102553,6 +102582,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38be789410d69ef40a29459dfa506f11, type: 3}
+--- !u!1 &1867507596 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6553936867123203753, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1589513381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1869141330
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106926,6 +106961,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38be789410d69ef40a29459dfa506f11, type: 3}
+--- !u!82 &1936434022 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -1438628644784416624, guid: 2b33a7eea3bb2a74fa6a392186870736,
+    type: 3}
+  m_PrefabInstance: {fileID: 1275358136}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1940105136
 GameObject:
   m_ObjectHideFlags: 0
