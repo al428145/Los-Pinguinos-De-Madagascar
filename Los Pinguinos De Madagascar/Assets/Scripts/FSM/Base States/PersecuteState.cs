@@ -104,7 +104,6 @@ public class PersecuteState : State
         if (wm == null || waypoints == null || waypoints.Count == 0 || owner == null)
             return;
 
-        Debug.Log("Recalculando ruta");
 
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, owner.player.transform.position, waypoints);
         Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(owner.player.transform.position, waypoints);
@@ -122,7 +121,6 @@ public class PersecuteState : State
         }
 
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
-        Debug.Log("Ruta recalculada. Nodos: " + rute.Count);
     }
 
     private void HandleLostPlayer(NPCBase owner)

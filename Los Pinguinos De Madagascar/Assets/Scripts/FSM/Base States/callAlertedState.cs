@@ -12,6 +12,8 @@ public class callAlertedState : State
 
     public override void Enter(NPCBase owner)
     {
+        Debug.Log($"🚨 {owner.name} entra en callAlertedState desde {owner.FSM.getState()?.GetType().Name}");
+
         if (rute != null && rute.Count > 0)
         {
             Debug.Log($"{owner.name}: ya estaba alertado, no recalculo ruta.");
@@ -107,6 +109,8 @@ public class callAlertedState : State
 
     private void calculateRute(NPCBase owner)
     {
+        Debug.Log($"🧭 {owner.name} calcula ruta hacia última posición del jugador {lastPositionPlayer}");
+
         if(wm == null) return;
         
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, lastPositionPlayer, allWaypoints);
@@ -125,6 +129,14 @@ public class callAlertedState : State
         }
 
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
-        Debug.Log("La ruta del callAlerted es de esta longitud" + rute.Count);
+        if (rute == null)
+            Debug.LogError($"{owner.name}: ⚠️ Pathfinder devolvió NULL");
+        else
+            Debug.Log($"{owner.name}: ✅ Ruta calculada de longitud {rute.Count}");
+        foreach(Waypoint wp in rute)
+        {
+            Debug.Log(wp);
+        }
+
     }
 }

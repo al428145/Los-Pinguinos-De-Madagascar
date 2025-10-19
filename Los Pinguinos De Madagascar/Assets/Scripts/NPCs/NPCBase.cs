@@ -84,6 +84,8 @@ public abstract class NPCBase : MonoBehaviour
 
     public virtual void HandleVision(Vector3 playerPosition)
     {
+        Debug.Log($"👁️ {gameObject.name} recibió HandleVision (estado actual = {FSM.getState()?.GetType().Name})");
+
         LastHeardPosition = playerPosition;
         PlayerIsBeingSeen = true;
         FSM?.TriggerEvent(StateEvent.PlayerSeen);

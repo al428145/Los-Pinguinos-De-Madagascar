@@ -4855,7 +4855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 14
 --- !u!1001 &97050456
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15336,7 +15336,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 14
 --- !u!1001 &269024952
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32847,6 +32847,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Surveillance Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5367631062115503988, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: alertRadius
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8051894795600161108, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
       propertyPath: m_LocalRotation.w
@@ -34773,7 +34778,6 @@ Transform:
   - {fileID: 1295431632}
   - {fileID: 991777581}
   - {fileID: 527672620}
-  - {fileID: 1155988830}
   - {fileID: 1025947247}
   - {fileID: 1191387740}
   - {fileID: 754828527}
@@ -42045,7 +42049,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 25
+  connectionRadius: 20
 --- !u!1001 &717918994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49206,7 +49210,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 10
 --- !u!1001 &836530360
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -50123,7 +50127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 10
 --- !u!1001 &851838424
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -56342,7 +56346,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 25
+  connectionRadius: 18
 --- !u!1001 &988144250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -63916,7 +63920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 25
+  connectionRadius: 22
 --- !u!1 &1132417145 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7428213431903784499, guid: eed54a613be71b543a99e53a8e2914de,
@@ -65111,12 +65115,6 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!4 &1155988830 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-    type: 3}
-  m_PrefabInstance: {fileID: 1641162945}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1160220028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70449,7 +70447,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 24
 --- !u!1001 &1258527221
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80662,7 +80660,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 24
 --- !u!1001 &1450852165
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85738,7 +85736,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 10
+  connectionRadius: 11
 --- !u!1001 &1551828950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -91070,134 +91068,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Guard (5)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 2b33a7eea3bb2a74fa6a392186870736, type: 3}
---- !u!1001 &1641162945
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 585814956}
-    m_Modifications:
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 26.16
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 21.169708
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 33
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 342136450914179526, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 732239672715547330, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1631142533}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[0]
-      value: 
-      objectReference: {fileID: 223368684}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[1]
-      value: 
-      objectReference: {fileID: 1546122651}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[2]
-      value: 
-      objectReference: {fileID: 1962832646}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[3]
-      value: 
-      objectReference: {fileID: 1424907981}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[4]
-      value: 
-      objectReference: {fileID: 374253704}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[5]
-      value: 
-      objectReference: {fileID: 835727471}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[6]
-      value: 
-      objectReference: {fileID: 1962832646}
-    - target: {fileID: 1412458867081235896, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: puntosDePatrulla.Array.data[7]
-      value: 
-      objectReference: {fileID: 1962832646}
-    - target: {fileID: 5506916593785388075, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: player
-      value: 
-      objectReference: {fileID: 1631142533}
-    - target: {fileID: 5506916593785388075, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: playerNoiseCircle
-      value: 
-      objectReference: {fileID: 1729449363}
-    - target: {fileID: 7587113417311921644, guid: 2b33a7eea3bb2a74fa6a392186870736,
-        type: 3}
-      propertyPath: m_Name
-      value: Guard (23)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -108792,7 +108662,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   neighbors: []
   position: {x: 0, y: 0, z: 0}
-  connectionRadius: 20
+  connectionRadius: 5
 --- !u!1 &1963175019
 GameObject:
   m_ObjectHideFlags: 0
