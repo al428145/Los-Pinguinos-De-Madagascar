@@ -46,7 +46,6 @@ public class callAlertedState : State
         
         else if(rute == null || rute.Count == 0)
         {
-            Debug.Log(lastPositionPlayer);
             Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position).normalized;
             owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
 
