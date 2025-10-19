@@ -20,12 +20,7 @@ public class ChickenSleepState : State
 
     public override void Execute(NPCBase owner)
     {
-        // Ver si ve al jugador
-        if (owner.VisionDetector != null && owner.VisionDetector.canSeePlayer)
-        {
-            owner.HandleVision(owner.VisionDetector.player.position);
-            return;
-        }
+     
 
         // Ver si escuchó un ruido
         if (owner.NoiseDetector != null && owner.NoiseDetector.HasHeardNoise)
@@ -48,7 +43,7 @@ public class ChickenSleepState : State
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
         Debug.Log(this.GetType().Name + " recibió evento: " + evt);
-        if (evt == StateEvent.PlayerHeard || evt == StateEvent.PlayerSeen || evt == StateEvent.NoiseHeard)
+        if (evt == StateEvent.PlayerHeard || evt == StateEvent.NoiseHeard)
             return typeof(ChickenAvisandoState);
         return null;
     }

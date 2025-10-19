@@ -27577,7 +27577,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 10
   viewAngle: 46
-  tiltDown: 44
+  tiltDown: 60.7
   player: {fileID: 1631142533}
   targetMask:
     serializedVersion: 2
@@ -41889,6 +41889,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Surveillance Camera (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563459568915873646, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5367631062115503988, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
@@ -63370,7 +63375,7 @@ PrefabInstance:
     - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
       propertyPath: tiltDown
-      value: 55
+      value: 60.7
       objectReference: {fileID: 0}
     - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
@@ -63536,7 +63541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   viewRadius: 10
   viewAngle: 46
-  tiltDown: 44
+  tiltDown: 49.7
   player: {fileID: 1631142533}
   targetMask:
     serializedVersion: 2
@@ -101539,7 +101544,12 @@ PrefabInstance:
     - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
       propertyPath: tiltDown
-      value: 55
+      value: 63.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2603091490822934926, guid: eed54a613be71b543a99e53a8e2914de,
         type: 3}
