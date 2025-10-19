@@ -27,9 +27,7 @@ public class Gallina : NPCBase
         });
         Debug.Log("Gallina Awake - FSM antes: " + FSM);
         FSM.SetState(typeof(ChickenSleepState));
-        // Asegurarse de que el SecurityCamera tenga la referencia del jugador
-        if (VisionDetector != null && VisionDetector.player == null)
-            VisionDetector.player = player;
+   
     }
 
     void Start()
@@ -50,13 +48,7 @@ public class Gallina : NPCBase
     }
         
 
-    public override void HandleVision(Vector3 playerPosition)
-    {
-        Debug.Log("Gallina vió ruido - FSM: " + FSM);
-        
-        base.HandleVision(playerPosition);
-        FSM.TriggerEvent(StateEvent.PlayerSeen);
-    }
+   
 
     public override void SelectNewDestination() { }
 }
