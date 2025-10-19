@@ -3510,7 +3510,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   firstTargetX: -260
-  finalTargetX: -400
+  finalTargetX: -300
   moveSpeed: 10
   rotationSpeed: 2
   climbAngle: -25

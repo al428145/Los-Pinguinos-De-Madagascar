@@ -6,13 +6,20 @@ public class callAlertedState : State
 {
     private List<Waypoint> rute;
     private List<Waypoint> allWaypoints;
-    private int currentWaypointIndex;
     private Vector3 lastPositionPlayer;
     private WaypointManager wm;
+    private float timer;
 
     public override void Enter(NPCBase owner)
     {
+        if (rute != null && rute.Count > 0)
+        {
+            Debug.Log($"{owner.name}: ya estaba alertado, no recalculo ruta.");
+            return;
+        }
+        timer = 0f;
         lastPositionPlayer = owner.player.transform.position;
+        rute = new List<Waypoint>();
         wm = Object.FindObjectOfType<WaypointManager>();
         allWaypoints = wm.GetWaypoints();
         calculateRute(owner);
@@ -20,6 +27,16 @@ public class callAlertedState : State
 
     public override void Execute(NPCBase owner)
     {
+        if (timer < 3f)
+        {
+            timer += Time.deltaTime;
+        }
+        else if (timer >= 3f)
+        {
+            calculateRute(owner);
+            timer = -999999999;
+        }
+
         if(owner.PlayerIsBeingSeen || owner.PlayerStillInRange)
         {
             owner.FSM.TriggerEvent(StateEvent.playerFindInRute);
@@ -28,16 +45,14 @@ public class callAlertedState : State
 
         if (rute.Count > 0)
         {
-            Waypoint target = rute[currentWaypointIndex];
+            Waypoint target = rute[0];
             owner.MoverHacia(target.position, MovementType.Walk);
 
             Vector3 direccionAlDestino = target.position - owner.transform.position;
             direccionAlDestino.y = 0;
             if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima)
             {
-                currentWaypointIndex++;
-
-                if (currentWaypointIndex >= rute.Count)
+                if (!TryAdvanceToNextWaypoint())
                 {
                     rute = new List<Waypoint>();
                 }
@@ -46,21 +61,32 @@ public class callAlertedState : State
         
         else if(rute == null || rute.Count == 0)
         {
-            Debug.Log(lastPositionPlayer);
-            Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position).normalized;
-            owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
+            Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position);
 
-            if (dirToPlayer != Vector3.zero)
+            if(dirToPlayer.sqrMagnitude > owner.distanciaMinima)
+            {
+                dirToPlayer.Normalize();
+                owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
                 owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToPlayer, Time.deltaTime * 5f);
-        }
-
-        Vector3 direccion = owner.transform.position - lastPositionPlayer;
-        direccion.y = 0;
-        if(direccion.sqrMagnitude < owner.distanciaMinima)
-        {
-            owner.FSM.TriggerEvent(StateEvent.investigationFinished);
+            }
+            else
+            {
+                owner.FSM.TriggerEvent(StateEvent.investigationFinished);
+            }
         }
         
+    }
+
+    private bool TryAdvanceToNextWaypoint()
+    {
+        if (rute == null || rute.Count == 0)
+            return false;
+
+        // Elimina el waypoint actual (ya alcanzado)
+        rute.RemoveAt(0);
+
+        // Devuelve si aun quedan mas puntos
+        return rute.Count > 0;
     }
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
@@ -78,12 +104,20 @@ public class callAlertedState : State
         
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, lastPositionPlayer, allWaypoints);
         Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(lastPositionPlayer, allWaypoints);
-        Debug.Log("Enemy waypoint: " + enemyWaypoint.transform.position);
-        Debug.Log("Player waypoint: " + playerWaypoint.transform.position);
+
+        if (enemyWaypoint == null || playerWaypoint == null)
+        {
+            rute = new List<Waypoint>();
+            return;
+        }
+
+        if (enemyWaypoint == playerWaypoint)
+        {
+            rute = new List<Waypoint> { enemyWaypoint };
+            return;
+        }
 
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
-
-        currentWaypointIndex = 0;
-        Debug.Log(rute.Count);
+        Debug.Log("La ruta del callAlerted es de esta longitud" + rute.Count);
     }
 }
