@@ -20,8 +20,15 @@ public class callAlertedState : State
         timer = 0f;
         lastPositionPlayer = owner.player.transform.position;
         rute = new List<Waypoint>();
-        wm = Object.FindObjectOfType<WaypointManager>();
-        allWaypoints = wm.GetWaypoints();
+        if (wm == null)
+        {
+            wm = Object.FindObjectOfType<WaypointManager>();
+            // También puedes inicializar allWaypoints aquí si no cambian
+            if (wm != null)
+            {
+                allWaypoints = wm.GetWaypoints();
+            }
+        }
         calculateRute(owner);
     }
 
@@ -50,7 +57,7 @@ public class callAlertedState : State
 
             Vector3 direccionAlDestino = target.position - owner.transform.position;
             direccionAlDestino.y = 0;
-            if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima)
+            if (direccionAlDestino.sqrMagnitude < owner.distanciaMinima * owner.distanciaMinima)
             {
                 if (!TryAdvanceToNextWaypoint())
                 {
@@ -63,7 +70,7 @@ public class callAlertedState : State
         {
             Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position);
 
-            if(dirToPlayer.sqrMagnitude > owner.distanciaMinima)
+            if(dirToPlayer.sqrMagnitude > owner.distanciaMinima * owner.distanciaMinima)
             {
                 dirToPlayer.Normalize();
                 owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;

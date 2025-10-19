@@ -24,7 +24,7 @@ public class AlertedState : State
         timer += Time.deltaTime;
         owner.LookAtNoise(owner.LastHeardPosition);
 
-        if (timer >= 0.5f)
+        if (timer >=1f)
         {
 
             if (owner.PlayerStillInRange || owner.PlayerIsBeingSeen)
