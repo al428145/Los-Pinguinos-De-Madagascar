@@ -22,24 +22,33 @@ public class returnPatrolState : State
 
     public override void Execute(NPCBase owner)
     {
-        if(owner.CompareTag("Guard"))
+        if (owner.CompareTag("Guard"))
         {
             Guard guard = owner as Guard;
-            if(rute == null || rute.Count == 0)
+            if (rute == null || rute.Count == 0)
             {
                 patrolPoints = guard.puntosDePatrulla;
                 calculateRute(owner, patrolPoints);
             }
         }
 
-        else if(owner.CompareTag("Dog"))
+        else if (owner.CompareTag("Dog"))
         {
             Dog dog = owner as Dog;
-            if(rute == null || rute.Count == 0)
+            if (rute == null || rute.Count == 0)
             {
                 patrolPoints = dog.waypointsZonePatrol;
                 calculateRute(owner, patrolPoints);
             }
+        }
+        
+        if(rute == null || rute.Count == 0)
+        {
+            Vector3 dirToWaypoint = (patrolWaypoint.position - owner.transform.position).normalized;
+            owner.transform.position += dirToWaypoint * owner.currentSpeed * Time.deltaTime;
+
+            if (dirToWaypoint != Vector3.zero)
+                owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToWaypoint, Time.deltaTime * 5f);
         }
 
         Waypoint target = rute[currentWaypointIndex];
@@ -61,15 +70,6 @@ public class returnPatrolState : State
             {
                 owner.FSM.TriggerEvent(StateEvent.returnRute);
             }
-        }
-
-        if(rute == null || rute.Count == 0)
-        {
-            Vector3 dirToWaypoint = (patrolWaypoint.position - owner.transform.position).normalized;
-            owner.transform.position += dirToWaypoint * owner.currentSpeed * Time.deltaTime;
-
-            if (dirToWaypoint != Vector3.zero)
-                owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToWaypoint, Time.deltaTime * 5f);
         }
     }
 

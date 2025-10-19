@@ -38,7 +38,7 @@ public class Guard : NPCBase
 
     void Start()
     {
-        SelectNewDestination();
+        //SelectNewDestination();
         FSM.SetState(typeof(PatrolState));
     }
 

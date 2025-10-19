@@ -40,7 +40,6 @@ public class SecurityCamNPC : NPCBase
 
     public override void HandleVision(Vector3 playerPosition)
     {
-        LastHeardPosition = playerPosition;
         base.HandleVision(playerPosition);
         FSM.TriggerEvent(StateEvent.PlayerSeen);
     }

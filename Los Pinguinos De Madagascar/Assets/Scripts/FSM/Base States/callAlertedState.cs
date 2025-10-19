@@ -12,7 +12,7 @@ public class callAlertedState : State
 
     public override void Enter(NPCBase owner)
     {
-        lastPositionPlayer = owner.LastHeardPosition;
+        lastPositionPlayer = owner.player.transform.position;
         wm = Object.FindObjectOfType<WaypointManager>();
         allWaypoints = wm.GetWaypoints();
         calculateRute(owner);
@@ -26,7 +26,7 @@ public class callAlertedState : State
             return;
         }
 
-        if(rute.Count > 0)
+        if (rute.Count > 0)
         {
             Waypoint target = rute[currentWaypointIndex];
             owner.MoverHacia(target.position, MovementType.Walk);
@@ -42,22 +42,23 @@ public class callAlertedState : State
                     rute = new List<Waypoint>();
                 }
             }
+        }
+        
+        else if(rute == null || rute.Count == 0)
+        {
+            Debug.Log(lastPositionPlayer);
+            Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position).normalized;
+            owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
 
-            if(rute == null || rute.Count == 0)
-            {
-                Vector3 dirToPlayer = (lastPositionPlayer - owner.transform.position).normalized;
-                owner.transform.position += dirToPlayer * owner.currentSpeed * Time.deltaTime;
+            if (dirToPlayer != Vector3.zero)
+                owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToPlayer, Time.deltaTime * 5f);
+        }
 
-                if (dirToPlayer != Vector3.zero)
-                    owner.transform.forward = Vector3.Lerp(owner.transform.forward, dirToPlayer, Time.deltaTime * 5f);
-            }
-
-            Vector3 direccion = owner.transform.position - lastPositionPlayer;
-            direccion.y = 0;
-            if(direccion.sqrMagnitude < owner.distanciaMinima)
-            {
-                owner.FSM.TriggerEvent(StateEvent.investigationFinished);
-            }
+        Vector3 direccion = owner.transform.position - lastPositionPlayer;
+        direccion.y = 0;
+        if(direccion.sqrMagnitude < owner.distanciaMinima)
+        {
+            owner.FSM.TriggerEvent(StateEvent.investigationFinished);
         }
         
     }
@@ -77,6 +78,8 @@ public class callAlertedState : State
         
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, lastPositionPlayer, allWaypoints);
         Waypoint playerWaypoint = Pathfinder.FindNearestWaypointPlayer(lastPositionPlayer, allWaypoints);
+        Debug.Log("Enemy waypoint: " + enemyWaypoint.transform.position);
+        Debug.Log("Player waypoint: " + playerWaypoint.transform.position);
 
         rute = Pathfinder.FindPath(enemyWaypoint, playerWaypoint);
 
