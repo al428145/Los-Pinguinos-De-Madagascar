@@ -4,7 +4,6 @@ public class PatrolState : State
 {
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Patrullando");
         owner.NoiseDetector?.SetDetectionEnabled(true);
         owner.VisionDetector?.SetDetectionEnabled(true);
         owner.SelectNewDestination();

@@ -4,8 +4,6 @@ public class ChickenSleepState : State
 {
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Gallina entra en SleepState 💤");
-
         // Activamos los detectores
         owner.NoiseDetector?.SetDetectionEnabled(true);
         owner.VisionDetector?.SetDetectionEnabled(true);

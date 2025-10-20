@@ -30,7 +30,6 @@ public class Pathfinder : MonoBehaviour
                 return ReconstructPath(currrentNode);
             }
                 
-
             openList.Remove(currrentNode);
             closeList.Add(currrentNode.waypoint);
 

@@ -9,7 +9,6 @@ public class ChickenAvisandoState : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Gallina entra en Avisando  :)");
         avisando = false;
         timer = 0f;
 

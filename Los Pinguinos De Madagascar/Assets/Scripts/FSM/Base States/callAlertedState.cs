@@ -11,11 +11,6 @@ public class callAlertedState : State
 
     public override void Enter(NPCBase owner)
     {
-        if (rute != null && rute.Count > 0)
-        {
-            Debug.Log($"{owner.name}: ya estaba alertado, no recalculo ruta.");
-            return;
-        }
         lastPositionPlayer = owner.player.transform.position;
         rute = new List<Waypoint>();
         wm = Object.FindObjectOfType<WaypointManager>();
@@ -83,9 +78,15 @@ public class callAlertedState : State
         return rute.Count > 0;
     }
 
+    public override void Exit(NPCBase owner)
+    {
+        base.Exit(owner);
+        rute = new List<Waypoint>();
+    }
+
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
-        rute = new List<Waypoint>();
+        
         if (evt==StateEvent.playerFindInRute)
             return typeof(PersecuteState);
         if (evt==StateEvent.investigationFinished)

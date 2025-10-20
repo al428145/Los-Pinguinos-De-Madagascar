@@ -8,7 +8,6 @@ public class CamaraWarning : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log(" Camara ALERTA ");
         timer = 0f;
 
         var cam = owner as SecurityCamNPC;

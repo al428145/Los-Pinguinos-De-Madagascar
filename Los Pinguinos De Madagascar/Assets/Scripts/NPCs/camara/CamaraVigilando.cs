@@ -4,7 +4,6 @@ public class CameraVigilando : State
 {
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("?? Camara vigilando...");
         var cam = owner as SecurityCamNPC;
         if (cam?.alarmSound != null)
             cam.alarmSound.Stop();

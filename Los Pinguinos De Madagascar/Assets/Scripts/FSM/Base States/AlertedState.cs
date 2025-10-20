@@ -6,7 +6,6 @@ public class AlertedState : State
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Estado de alerta Perro");
         timer = 0f;
 
         if (owner is Guard guard)
@@ -25,7 +24,7 @@ public class AlertedState : State
         owner.LookAtNoise(owner.LastHeardPosition);
         if (timer >= 1f)
         {
-            // Si mientras está alertado VE al jugador, que pase a persecución
+            // Si mientras estï¿½ alertado VE al jugador, que pase a persecuciï¿½n
             if (owner.PlayerIsBeingSeen)
         {
             owner.FSM.TriggerEvent(StateEvent.PlayerSeen);
@@ -57,10 +56,10 @@ public class AlertedState : State
         if (evt == StateEvent.AlertTimeout)
             return typeof(InvestigateState);
 
-        else if (evt == StateEvent.InvestigateDone) // Este 'else' ya no se usará
+        else if (evt == StateEvent.InvestigateDone) // Este 'else' ya no se usarï¿½
             return typeof(PatrolState);
 
-        // --- AÑADE ESTA LÍNEA ---
+        // --- Aï¿½ADE ESTA Lï¿½NEA ---
         else if (evt == StateEvent.PlayerSeen)
             return typeof(PersecuteState);
         // -------------------------

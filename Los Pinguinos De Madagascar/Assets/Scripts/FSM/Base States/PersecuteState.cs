@@ -35,7 +35,7 @@ public class PersecuteState : State
 
 
         // Si está muy cerca del jugador, ignora la ruta y muévete directo
-        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 100f)
+        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 70f)
         {
             recalcTimer += Time.deltaTime;
 

@@ -4,7 +4,6 @@ public class InvestigateState : State
 {
     public override void Enter(NPCBase owner)
     {
-        Debug.Log("Pasando a investigar");
         owner.CurrentDestination = owner.LastHeardPosition;
 
         if (owner is Guard guard && guard.investigateIcon != null)
@@ -30,7 +29,7 @@ public class InvestigateState : State
 
     public override void Exit(NPCBase owner)
     {
-        // Desactivar imagen de investigación
+        // Desactivar imagen de investigaciï¿½n
         if (owner is Guard guard && guard.investigateIcon != null)
             guard.investigateIcon.SetActive(false);
     }
