@@ -26,7 +26,10 @@ public class Pathfinder : MonoBehaviour
             PathNode targetNode = new PathNode(target);
 
             if(currrentNode.waypoint == targetNode.waypoint)
+            {
                 return ReconstructPath(currrentNode);
+            }
+                
 
             openList.Remove(currrentNode);
             closeList.Add(currrentNode.waypoint);
@@ -54,7 +57,6 @@ public class Pathfinder : MonoBehaviour
                 neighborNode.fCost = neighborNode.gCost + neighborNode.hCost;
             }
         }
-
         return new List<Waypoint>();
     }
 

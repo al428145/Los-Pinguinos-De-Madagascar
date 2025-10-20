@@ -35,7 +35,7 @@ public class PersecuteState : State
 
 
         // Si está muy cerca del jugador, ignora la ruta y muévete directo
-        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 40f)
+        if (rute == null || rute.Count == 0 || distToPlayer.sqrMagnitude < 100f)
         {
             recalcTimer += Time.deltaTime;
 
@@ -139,6 +139,7 @@ public class PersecuteState : State
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
+        rute = new List<Waypoint>();
         if (evt == StateEvent.LostPlayer)
             return typeof(returnPatrolState);
         return null;

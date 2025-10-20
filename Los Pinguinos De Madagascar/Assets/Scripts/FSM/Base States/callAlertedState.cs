@@ -8,29 +8,18 @@ public class callAlertedState : State
     private List<Waypoint> allWaypoints;
     private Vector3 lastPositionPlayer;
     private WaypointManager wm;
-    private float timer;
 
     public override void Enter(NPCBase owner)
     {
-        Debug.Log($"🚨 {owner.name} entra en callAlertedState desde {owner.FSM.getState()?.GetType().Name}");
-
         if (rute != null && rute.Count > 0)
         {
             Debug.Log($"{owner.name}: ya estaba alertado, no recalculo ruta.");
             return;
         }
-        timer = 0f;
         lastPositionPlayer = owner.player.transform.position;
         rute = new List<Waypoint>();
-        if (wm == null)
-        {
-            wm = Object.FindObjectOfType<WaypointManager>();
-            // También puedes inicializar allWaypoints aquí si no cambian
-            if (wm != null)
-            {
-                allWaypoints = wm.GetWaypoints();
-            }
-        }
+        wm = Object.FindObjectOfType<WaypointManager>();
+        allWaypoints = wm.GetWaypoints();
         calculateRute(owner);
     }
 
@@ -96,6 +85,7 @@ public class callAlertedState : State
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
+        rute = new List<Waypoint>();
         if (evt==StateEvent.playerFindInRute)
             return typeof(PersecuteState);
         if (evt==StateEvent.investigationFinished)
@@ -105,8 +95,6 @@ public class callAlertedState : State
 
     private void calculateRute(NPCBase owner)
     {
-        Debug.Log($"🧭 {owner.name} calcula ruta hacia última posición del jugador {lastPositionPlayer}");
-
         if(wm == null) return;
         
         Waypoint enemyWaypoint = Pathfinder.FindTheNearestWaypointEnemy(owner.transform.position, lastPositionPlayer, allWaypoints);
