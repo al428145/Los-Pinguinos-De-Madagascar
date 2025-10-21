@@ -40,6 +40,9 @@ public class returnPatrolState : State
                 calculateRute(owner, patrolPoints);
             }
         }
+
+        if (owner.PlayerIsBeingSeen)
+            owner.FSM.TriggerEvent(StateEvent.StartChase);
         
         if(rute == null || rute.Count == 0)
         {
@@ -94,8 +97,10 @@ public class returnPatrolState : State
 
     public override System.Type GetNextStateForEvent(StateEvent evt)
     {
-        if(evt == StateEvent.returnRute)
+        if (evt == StateEvent.returnRute)
             return typeof(PatrolState);
+        if (evt == StateEvent.StartChase)
+            return typeof(PersecuteState);
         return null;
     } 
 }
